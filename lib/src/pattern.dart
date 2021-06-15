@@ -132,4 +132,24 @@ abstract class Pattern {
     }
     canvas.restore();
   }
+
+  void paintOnCircle(Canvas canvas, Size size, Offset c, double radius,
+      {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
+    canvas.save();
+    final Rect rect = Rect.fromCircle(center: Offset(c.dx, c.dy), radius: radius);
+    final Path circle = Path()..addOval(rect);
+    canvas.clipPath(circle);
+    switch (patternScaleBehavior) {
+      case PatternScaleBehavior.container:
+        paintWithPattern(canvas, rect.left, rect.top, rect.width, rect.height);
+        break;
+      case PatternScaleBehavior.canvas:
+        paintOnCanvas(canvas, size);
+        break;
+      case PatternScaleBehavior.customRect:
+        paintWithPattern(canvas, customRect!.left, customRect.top, customRect.width, customRect.height);
+        break;
+    }
+    canvas.restore();
+  }
 }
