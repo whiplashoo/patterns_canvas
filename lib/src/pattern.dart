@@ -37,6 +37,7 @@ abstract class Pattern {
   final Color bgColor;
   final Color fgColor;
   final PatternType patternType;
+  String get description => "Pattern";
 
   const Pattern({required this.patternType, required this.bgColor, required this.fgColor});
 

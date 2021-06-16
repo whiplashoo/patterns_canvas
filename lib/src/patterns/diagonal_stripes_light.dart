@@ -9,6 +9,7 @@ class DiagonalStripesLight extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int stripesCount = 40;
+  String get description => "Diagonal Stripes Light";
 
   const DiagonalStripesLight({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.diagonalLight, bgColor: bgColor, fgColor: fgColor);

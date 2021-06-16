@@ -8,6 +8,7 @@ class HorizontalStripesThick extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int stripesCount = 60;
+  String get description => "Horizontal Stripes Thick";
 
   const HorizontalStripesThick({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.horizontalThick, bgColor: bgColor, fgColor: fgColor);

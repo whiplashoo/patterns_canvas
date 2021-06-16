@@ -8,6 +8,7 @@ class VerticalStripesLight extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int stripesCount = 60;
+  String get description => "Vertical Stripes Light";
 
   const VerticalStripesLight({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.verticalLight, bgColor: bgColor, fgColor: fgColor);

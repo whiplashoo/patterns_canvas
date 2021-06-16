@@ -9,6 +9,7 @@ class DiagonalStripesThick extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int stripesCount = 40;
+  String get description => "Diagonal Stripes Thick";
 
   const DiagonalStripesThick({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.diagonalThick, bgColor: bgColor, fgColor: fgColor);

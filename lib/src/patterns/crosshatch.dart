@@ -9,6 +9,7 @@ class Crosshatch extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int squaresCount = 20;
+  String get description => "Crosshatch";
 
   const Crosshatch({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.crosshatch, bgColor: bgColor, fgColor: fgColor);

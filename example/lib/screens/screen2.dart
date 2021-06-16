@@ -3,18 +3,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:patterns_canvas/patterns_canvas.dart';
 
-class Screen1 extends StatefulWidget {
+class Screen2 extends StatefulWidget {
   @override
-  _Screen1State createState() => _Screen1State();
+  _Screen2State createState() => _Screen2State();
 }
 
-class _Screen1State extends State<Screen1> {
+class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Painting patterns on canvas elements',
+          'Painting patterns on widgets',
           style: TextStyle(fontSize: 16),
         ),
       ),

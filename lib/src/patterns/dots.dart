@@ -9,6 +9,7 @@ class Dots extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int circlesCount = 20;
+  String get description => "Dots";
 
   const Dots({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.dots, bgColor: bgColor, fgColor: fgColor);

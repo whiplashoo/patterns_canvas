@@ -9,6 +9,7 @@ class TexturePattern extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int squaresCount = 40;
+  String get description => "Texture";
 
   const TexturePattern({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.texture, bgColor: bgColor, fgColor: fgColor);

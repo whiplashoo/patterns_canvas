@@ -9,6 +9,7 @@ class SubtlePatch extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int squaresCount = 40;
+  String get description => "Subtle Patch";
 
   const SubtlePatch({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.subtlepatch, bgColor: bgColor, fgColor: fgColor);

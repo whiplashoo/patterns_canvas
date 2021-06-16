@@ -9,6 +9,7 @@ class Raindrops extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int dropsCount = 20;
+  String get description => "Raindrops";
 
   const Raindrops({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.raindrops, bgColor: bgColor, fgColor: fgColor);

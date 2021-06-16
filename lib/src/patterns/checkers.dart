@@ -9,6 +9,7 @@ class Checkers extends Pattern {
   final Color bgColor;
   final Color fgColor;
   final int squaresCount = 40;
+  String get description => "Checkers";
 
   const Checkers({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.checkers, bgColor: bgColor, fgColor: fgColor);
