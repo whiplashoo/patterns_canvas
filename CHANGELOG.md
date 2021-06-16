@@ -1,7 +1,13 @@
+* TODO: README
 * TODO: Add option to control how many stripes are drawn
-* TODO: Example and README
 * TODO: Publish as plugin
-* TODO: For drawing on widgets, consider either enabling how many stripes to draw, or calculate that and adjust according to widget's size, relative to the device dimensions.
+* TODO: Consider adding a serialization function for objects
+
+## 0.3.0
+
+* Αdd three more example screens. 
+* Finalize painting on widgets feature.
+* Add description property to patterns.
 
 ## 0.2.0
 
