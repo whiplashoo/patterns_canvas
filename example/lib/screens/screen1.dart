@@ -23,10 +23,8 @@ class _Screen1State extends State<Screen1> {
           constrained: false,
           child: Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context).size.height - 40.0,
             child: CustomPaint(
-              isComplex: true,
-              willChange: true,
               painter: MyPainter(),
             ),
           ),
@@ -127,7 +125,7 @@ class MyPainter extends CustomPainter {
     catBodyPath.cubicTo(w * 0.82, h * 0.1, w * 0.77, h * 0.1, w * 0.71, h * 0.12);
     catBodyPath.cubicTo(w * 0.71, h * 0.12, w * 0.63, h * 0.05, w * 0.63, h * 0.05);
     catBodyPath.cubicTo(w * 0.63, h * 0.05, w * 0.63, h * 0.05, w * 0.63, h * 0.05);
-    final catPath = Path()..addPath(catBodyPath, Offset(20.0, size.height - 300));
+    final catPath = Path()..addPath(catBodyPath, Offset(20.0, size.height - 260));
     return catPath;
   }
 }

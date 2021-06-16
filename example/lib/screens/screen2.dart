@@ -11,74 +11,32 @@ class Screen2 extends StatefulWidget {
 class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
-    Widget titleSection = Container(
-      padding: const EdgeInsets.all(16),
-      child: Row(
-        children: [
-          Expanded(
-            /*1*/
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /*2*/
-                Container(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    'Oeschinen Lake Campground',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Text(
-                  'Kandersteg, Switzerland',
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          /*3*/
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          Text('41'),
-        ],
-      ),
-    );
-    Color color = Theme.of(context).primaryColor;
-
     Widget buttonSection = Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildButtonColumn(color, Icons.call, 'CALL'),
-          _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
-          _buildButtonColumn(color, Icons.share, 'SHARE'),
+          _buildButtonColumn(Colors.deepPurple, Icons.call, 'CALL'),
+          _buildButtonColumn(Colors.deepPurple, Icons.near_me, 'ROUTE'),
+          _buildButtonColumn(Colors.deepPurple, Icons.share, 'SHARE'),
         ],
       ),
     );
 
-    Widget textSection = CustomPaint(
-        painter: TextContainerPatternPainter(),
-        child: Container(
-          padding: const EdgeInsets.all(32),
-          child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-                'Alps. Situated 1,578 meters above sea level, it is one of the '
-                'larger Alpine Lakes.Activities '
-                'enjoyed here include rowing, and riding the summer toboggan run.',
-                softWrap: true,
+    Widget textSection = Expanded(
+        child: CustomPaint(
+            painter: TextContainerPatternPainter(),
+            child: Center(
+              child: Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Painting on a BottomAppBar ⬇️',
+                    softWrap: true,
+                  ),
+                ),
               ),
-            ),
-          ),
-        ));
+            )));
 
     return Scaffold(
       appBar: AppBar(
@@ -87,7 +45,7 @@ class _Screen2State extends State<Screen2> {
           style: TextStyle(fontSize: 16),
         ),
       ),
-      body: ListView(
+      body: Column(
         children: [
           CustomPaint(
             painter: TopContainerPatternPainter(),
@@ -103,7 +61,14 @@ class _Screen2State extends State<Screen2> {
                       ))),
             ),
           ),
-          titleSection,
+          Center(
+            child: Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text("Painting on Buttons"),
+                )),
+          ),
           buttonSection,
           textSection,
         ],
@@ -176,7 +141,7 @@ Widget _buildButtonColumn(Color color, IconData icon, String label) {
 class TopContainerPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    HorizontalStripesThick(bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f)).paintOnWidget(canvas, size);
+    VerticalStripesThick(bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f)).paintOnWidget(canvas, size);
   }
 
   @override

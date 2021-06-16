@@ -1,6 +1,7 @@
 import 'package:example/screens/screen1.dart';
 import 'package:example/screens/screen2.dart';
 import 'package:example/screens/screen3.dart';
+import 'package:example/screens/screen4.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,7 +10,7 @@ void main() {
       'screen1': (ctx) => Screen1(),
       'screen2': (ctx) => Screen2(),
       'screen3': (ctx) => Screen3(),
-      // 'screen4': (ctx) => Screen4(),
+      'screen4': (ctx) => Screen4(),
     },
     home: Scaffold(
       body: MyExampleWidget(),
