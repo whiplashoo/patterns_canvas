@@ -11,6 +11,75 @@ class Screen2 extends StatefulWidget {
 class _Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        children: [
+          Expanded(
+            /*1*/
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /*2*/
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    'Oeschinen Lake Campground',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Text(
+                  'Kandersteg, Switzerland',
+                  style: TextStyle(
+                    color: Colors.grey[500],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          /*3*/
+          Icon(
+            Icons.star,
+            color: Colors.red[500],
+          ),
+          Text('41'),
+        ],
+      ),
+    );
+    Color color = Theme.of(context).primaryColor;
+
+    Widget buttonSection = Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildButtonColumn(color, Icons.call, 'CALL'),
+          _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
+          _buildButtonColumn(color, Icons.share, 'SHARE'),
+        ],
+      ),
+    );
+
+    Widget textSection = CustomPaint(
+        painter: TextContainerPatternPainter(),
+        child: Container(
+          padding: const EdgeInsets.all(32),
+          child: Container(
+            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
+                'Alps. Situated 1,578 meters above sea level, it is one of the '
+                'larger Alpine Lakes.Activities '
+                'enjoyed here include rowing, and riding the summer toboggan run.',
+                softWrap: true,
+              ),
+            ),
+          ),
+        ));
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -18,16 +87,57 @@ class _Screen2State extends State<Screen2> {
           style: TextStyle(fontSize: 16),
         ),
       ),
-      body: Center(
-        child: InteractiveViewer(
-          constrained: false,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: CustomPaint(
-              isComplex: true,
-              willChange: true,
-              painter: MyPainter(context),
+      body: ListView(
+        children: [
+          CustomPaint(
+            painter: TopContainerPatternPainter(),
+            child: Container(
+              width: 600,
+              height: 200,
+              child: Center(
+                  child: Container(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Painting on a Container"),
+                      ))),
+            ),
+          ),
+          titleSection,
+          buttonSection,
+          textSection,
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomAppBar(
+        clipBehavior: Clip.antiAlias,
+        shape: const CircularNotchedRectangle(),
+        child: IconTheme(
+          data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
+          child: CustomPaint(
+            painter: BottomAppBarPatternPainter(),
+            child: Row(
+              children: <Widget>[
+                IconButton(
+                  color: Colors.black,
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  color: Colors.black,
+                  icon: const Icon(Icons.search),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  color: Colors.redAccent,
+                  icon: const Icon(Icons.favorite),
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
         ),
@@ -36,100 +146,70 @@ class _Screen2State extends State<Screen2> {
   }
 }
 
-class MyPainter extends CustomPainter {
-  final BuildContext context;
+Widget _buildButtonColumn(Color color, IconData icon, String label) {
+  return CustomPaint(
+    painter: ButtonPatternPainter(),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, color: color),
+          Container(
+            margin: const EdgeInsets.only(top: 8),
+            child: Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: color,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
 
-  MyPainter(this.context);
-
+class TopContainerPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    // Prepare the canvas elements to draw on.
-    final rect1 = Rect.fromLTWH(30, 50, 125, 75);
-    final rect2 = Rect.fromLTWH(30, 150, 125, 75);
-    final rect3 = Rect.fromLTWH(30, 250, 125, 75);
-    final rRect = RRect.fromLTRBR(190, 50, 325, 125, Radius.circular(45));
-
-    final rightPath = Path();
-    rightPath.lineTo(size.width, size.height / 5);
-    rightPath.cubicTo(
-        size.width, size.height / 5, size.width * 0.9, size.height * 0.88, size.width * 0.3, size.height * 0.93);
-    rightPath.cubicTo(size.width * 0.36, size.height * 0.97, size.width / 5, size.height, size.width / 5, size.height);
-    rightPath.cubicTo(size.width / 5, size.height, size.width, size.height, size.width, size.height);
-    rightPath.cubicTo(size.width, size.height, size.width, size.height / 5, size.width, size.height / 5);
-
-    final catPath = createCatPath(size);
-
-    // Painting the whole canvas with a pattern:
-    SubtlePatch(bgColor: Colors.white, fgColor: Color(0xffd1dbdd)).paintOnCanvas(canvas, size);
-
-    // You can construct a Pattern with three different ways:
-    // 1. Directly through a pattern type constructor:
-    final Pattern p1 = DiagonalStripesLight(bgColor: Colors.yellowAccent, fgColor: Colors.black);
-    p1.paintOnRect(canvas, size, rect1);
-
-    // 2. With the Pattern.fromValues factory constructor:
-    final Pattern p2 =
-        Pattern.fromValues(patternType: PatternType.checkers, bgColor: Colors.blueGrey, fgColor: Colors.deepOrange);
-    p2.paintOnRect(canvas, size, rect2);
-
-    // 3. From a String shorthand in the form of `pattern_backgroundHex_foregroundHex`:
-    final Pattern p3 = Pattern.fromString("verticalThick_e17c05_525252");
-    p3.paintOnRect(canvas, size, rect3);
-
-    // You can also draw Patterns on a RRect:
-    DiagonalStripesThick(bgColor: Colors.greenAccent, fgColor: Colors.black).paintOnRRect(canvas, size, rRect);
-
-    // Or on a Circle:
-    HorizontalStripesThick(bgColor: Colors.blueGrey, fgColor: Colors.yellowAccent)
-        .paintOnCircle(canvas, size, Offset(250, 185), 40.0);
-
-    // You can also control how the pattern scales to its containing element (more on this in the second example):
-    HorizontalStripesThick(bgColor: Colors.blueGrey, fgColor: Colors.yellowAccent)
-        .paintOnCircle(canvas, size, Offset(250, 285), 40.0, patternScaleBehavior: PatternScaleBehavior.canvas);
-
-    // Drawing on any kind of Path element:
-    Crosshatch(bgColor: Colors.blueGrey, fgColor: Colors.yellowAccent).paintOnPath(canvas, size, rightPath);
-    Dots(bgColor: Color(0xfffdbf6f), fgColor: Color(0xff525252)).paintOnPath(canvas, size, catPath,
-        patternScaleBehavior: PatternScaleBehavior.customRect,
-        customRect: Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2));
+    HorizontalStripesThick(bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f)).paintOnWidget(canvas, size);
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class ButtonPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Raindrops(bgColor: Color(0xffffffb3), fgColor: Color(0xffa6cee3)).paintOnWidget(canvas, size);
   }
 
-  Path createCatPath(Size size) {
-    final w = 155;
-    final h = 160;
-    Path catBodyPath = Path();
-    catBodyPath.lineTo(w * 0.63, h * 0.05);
-    catBodyPath.cubicTo(w * 0.63, h * 0.05, w * 0.61, h * 0.19, w * 0.61, h * 0.19);
-    catBodyPath.cubicTo(w * 0.61, h * 0.19, w * 0.57, h * 0.24, w * 0.57, h * 0.31);
-    catBodyPath.cubicTo(w * 0.57, h * 0.38, w * 0.63, h * 0.43, w * 0.63, h * 0.43);
-    catBodyPath.cubicTo(w * 0.48, h * 0.43, w * 0.29, h * 0.6, w * 0.29, h * 0.83);
-    catBodyPath.cubicTo(w * 0.29, h * 0.87, w * 0.29, h * 0.9, w * 0.29, h * 0.92);
-    catBodyPath.cubicTo(w * 0.23, h * 0.88, w * 0.18, h * 0.78, w * 0.18, h * 0.67);
-    catBodyPath.cubicTo(w * 0.18, h * 0.55, w * 0.3, h * 0.24, w * 0.3, h * 0.19);
-    catBodyPath.cubicTo(w * 0.3, h * 0.13, w * 0.26, h * 0.09, w / 5, h * 0.09);
-    catBodyPath.cubicTo(w * 0.14, h * 0.09, w * 0.09, h * 0.13, w * 0.09, h * 0.19);
-    catBodyPath.cubicTo(w * 0.09, h * 0.22, w * 0.11, h * 0.24, w * 0.14, h * 0.24);
-    catBodyPath.cubicTo(w * 0.17, h * 0.24, w * 0.19, h * 0.22, w / 5, h / 5);
-    catBodyPath.cubicTo(w * 0.18, h * 0.27, w * 0.07, h * 0.56, w * 0.07, h * 0.67);
-    catBodyPath.cubicTo(w * 0.07, h * 0.88, w / 5, h * 1.05, w * 0.38, h * 1.05);
-    catBodyPath.cubicTo(w * 0.38, h * 1.05, w * 0.39, h * 1.05, w * 0.39, h * 1.05);
-    catBodyPath.cubicTo(w * 0.39, h * 1.05, w * 0.73, h * 1.05, w * 0.73, h * 1.05);
-    catBodyPath.cubicTo(w * 0.73, h * 1.05, w * 0.95, h * 1.05, w * 0.95, h * 1.05);
-    catBodyPath.cubicTo(w * 0.95, h * 1.05, w * 1.02, h * 0.43, w * 1.02, h * 0.43);
-    catBodyPath.cubicTo(w * 1.02, h * 0.43, w * 1.07, h * 0.38, w * 1.07, h * 0.31);
-    catBodyPath.cubicTo(w * 1.07, h * 0.24, w * 1.04, h * 0.19, w * 1.04, h * 0.19);
-    catBodyPath.cubicTo(w * 1.04, h * 0.19, w * 1.02, h * 0.05, w * 1.02, h * 0.05);
-    catBodyPath.cubicTo(w * 1.02, h * 0.05, w * 0.93, h * 0.12, w * 0.93, h * 0.12);
-    catBodyPath.cubicTo(w * 0.89, h * 0.1, w * 0.82, h * 0.1, w * 0.82, h * 0.1);
-    catBodyPath.cubicTo(w * 0.82, h * 0.1, w * 0.77, h * 0.1, w * 0.71, h * 0.12);
-    catBodyPath.cubicTo(w * 0.71, h * 0.12, w * 0.63, h * 0.05, w * 0.63, h * 0.05);
-    catBodyPath.cubicTo(w * 0.63, h * 0.05, w * 0.63, h * 0.05, w * 0.63, h * 0.05);
-    final catPath = Path()..addPath(catBodyPath, Offset(20.0, size.height - 300));
-    return catPath;
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class TextContainerPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Dots(bgColor: Color(0xffffffff), fgColor: Color(0xffd1e5f0)).paintOnWidget(canvas, size);
   }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class BottomAppBarPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    DiagonalStripesLight(bgColor: Color(0xffeeeeee), fgColor: Color(0xffd1dbdd))
+        .paintOnWidget(canvas, size, patternScaleBehavior: PatternScaleBehavior.canvas);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

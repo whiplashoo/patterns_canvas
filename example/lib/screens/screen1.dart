@@ -27,7 +27,7 @@ class _Screen1State extends State<Screen1> {
             child: CustomPaint(
               isComplex: true,
               willChange: true,
-              painter: MyPainter(context),
+              painter: MyPainter(),
             ),
           ),
         ),
@@ -37,9 +37,7 @@ class _Screen1State extends State<Screen1> {
 }
 
 class MyPainter extends CustomPainter {
-  final BuildContext context;
-
-  MyPainter(this.context);
+  MyPainter();
 
   @override
   void paint(Canvas canvas, Size size) {

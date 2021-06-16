@@ -72,6 +72,29 @@ abstract class Pattern {
     paintWithPattern(canvas, 0.0, 0.0, size.width, size.height);
   }
 
+  void paintOnWidget(Canvas canvas, Size size,
+      {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
+    canvas.save();
+    final rect = Rect.fromLTWH(0.0, 0.0, size.width, size.height);
+    canvas.clipRect(rect);
+    switch (patternScaleBehavior) {
+      case PatternScaleBehavior.container:
+        paintWithPattern(canvas, 0.0, 0.0, size.width, size.height);
+        break;
+      case PatternScaleBehavior.canvas:
+        Size screenSize =
+            WidgetsBinding.instance!.window.physicalSize / WidgetsBinding.instance!.window.devicePixelRatio;
+        paintOnCanvas(canvas, screenSize);
+        break;
+      case PatternScaleBehavior.customRect:
+        (customRect != null)
+            ? paintWithPattern(canvas, customRect.left, customRect.top, customRect.width, customRect.height)
+            : paintOnCanvas(canvas, size);
+        break;
+    }
+    canvas.restore();
+  }
+
   ///
   ///
   /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
