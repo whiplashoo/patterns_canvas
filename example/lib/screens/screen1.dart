@@ -35,8 +35,6 @@ class _Screen1State extends State<Screen1> {
 }
 
 class MyPainter extends CustomPainter {
-  MyPainter();
-
   @override
   void paint(Canvas canvas, Size size) {
     // Prepare the canvas elements to draw on.

@@ -1,5 +1,5 @@
 # patterns_canvas
 
-Draw patterns like stripes or dots on canvas elements.
+Draw patterns like stripes or dots on canvas elements or widgets.
 
 
