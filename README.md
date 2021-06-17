@@ -82,7 +82,7 @@ body: Center(
   ),
 ...
 
-// 
+// In your CustomPainter:
 class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -101,7 +101,7 @@ class MyPainter extends CustomPainter {
 }
 ```
 
-The library exposes these methods for drawing with patterns:
+You can use this methods to draw on `Canvas` shapes:
 ```
 pattern.paintOnPath(canvas, size, path);
 pattern.paintOnRect(canvas, size, rect);
@@ -153,3 +153,39 @@ All Patterns require a background color and foreground color on instantiation. T
 
 
 ### Scale behavior setting
+All patterns are **by default scaled to their container (`patternScaleBehavior = PatternScaleBehavior.container`)**. This means that, regardless its size, a `Rectangle` will contain 40 diagonal stripes or 40 dots.
+
+````
+DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect1);
+Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2);
+````
+
+<p align="center">
+<img width="50%" src="https://user-images.githubusercontent.com/9117427/122351725-1963b000-cf57-11eb-993a-af64abb5e5da.png"/>
+
+
+You can change this behavior by providing a different argument to the `paintOn` method:
+
+Pass `patternScaleBehavior: PatternScaleBehavior.canvas` to **scale the pattern to the whole `Canvas` area**. Now the `Canvas` will contain 40 diagonal stripes or 40 dots, so, a `Rectangle` will contain as many dots or stripes as it can fit:
+
+````
+DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect1, patternScaleBehavior: PatternScaleBehavior.canvas);
+Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patternScaleBehavior: PatternScaleBehavior.canvas);
+````
+
+<p align="center">
+<img width="50%" src="https://user-images.githubusercontent.com/9117427/122351742-1f599100-cf57-11eb-858e-16a9de68b360.png"/>
+
+
+Pass `patternScaleBehavior: PatternScaleBehavior.canvas` and a `customRect` (e.g. a `Rectangle` with half the `Canvas` height) to further customize the `Pattern` size:
+
+````
+final Rect halfCanvas = Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2); // a Rectangle with half the Canvas height.
+DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect1, patternScaleBehavior: PatternScaleBehavior.customRect, customRect: halfCanvas );
+Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patternScaleBehavior: PatternScaleBehavior.customRect, customRect: halfCanvas );
+````
+
+<p align="center">
+<img width="50%" src="https://user-images.githubusercontent.com/9117427/122351763-2385ae80-cf57-11eb-9193-946b0b10656c.png"/>
+
+It is also in the Roadmap to allow for selecting the number of `Pattern` features to use (e.g. draw only 5 diagonal stripes).
