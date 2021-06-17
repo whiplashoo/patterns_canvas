@@ -23,9 +23,13 @@ class VerticalStripesThick extends Pattern {
   /// VerticalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const VerticalStripesThick({required this.bgColor, required this.fgColor})
-      : super(patternType: PatternType.verticalThick, bgColor: bgColor, fgColor: fgColor);
+      : super(
+            patternType: PatternType.verticalThick,
+            bgColor: bgColor,
+            fgColor: fgColor);
 
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height) {
     var stripeW = width / stripesCount / 1.5;
     final paint = Paint()
       ..style = PaintingStyle.fill

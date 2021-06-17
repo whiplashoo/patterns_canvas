@@ -23,9 +23,13 @@ class SubtlePatch extends Pattern {
   /// SubtlePatch(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const SubtlePatch({required this.bgColor, required this.fgColor})
-      : super(patternType: PatternType.subtlepatch, bgColor: bgColor, fgColor: fgColor);
+      : super(
+            patternType: PatternType.subtlepatch,
+            bgColor: bgColor,
+            fgColor: fgColor);
 
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
     var rectSide = maxDimension / squaresCount;
     var horizontalSquaresCount = width / rectSide;
@@ -42,7 +46,8 @@ class SubtlePatch extends Pattern {
         if (j % 2 == 0 && i % 2 == 0) {
           final rectX = x + dx;
           final rectY = y + dy;
-          final innerRect = Rect.fromLTWH(rectX + rectSide / 4, rectY + rectSide / 4, rectSide / 2, rectSide / 2);
+          final innerRect = Rect.fromLTWH(rectX + rectSide / 4,
+              rectY + rectSide / 4, rectSide / 2, rectSide / 2);
           rectsPath.addRect(innerRect);
         }
         dx += rectSide;

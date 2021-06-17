@@ -22,9 +22,13 @@ class HorizontalStripesThick extends Pattern {
   /// HorizontalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const HorizontalStripesThick({required this.bgColor, required this.fgColor})
-      : super(patternType: PatternType.horizontalThick, bgColor: bgColor, fgColor: fgColor);
+      : super(
+            patternType: PatternType.horizontalThick,
+            bgColor: bgColor,
+            fgColor: fgColor);
 
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height) {
     var stripeH = height / stripesCount / 1.5;
     final paint = Paint()
       ..style = PaintingStyle.fill

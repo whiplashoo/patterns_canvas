@@ -23,16 +23,21 @@ class DiagonalStripesThick extends Pattern {
   /// DiagonalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const DiagonalStripesThick({required this.bgColor, required this.fgColor})
-      : super(patternType: PatternType.diagonalThick, bgColor: bgColor, fgColor: fgColor);
+      : super(
+            patternType: PatternType.diagonalThick,
+            bgColor: bgColor,
+            fgColor: fgColor);
 
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
     final stripeW = maxDimension / stripesCount / 2;
     final paint = Paint()
       ..style = PaintingStyle.fill
       ..color = bgColor;
     canvas.drawRect(Rect.fromLTWH(x, y, width, height), paint);
-    final rectStripesCount = stripesCount * 2.5; // to make sure we cover the whole rectangle;
+    final rectStripesCount =
+        stripesCount * 2.5; // to make sure we cover the whole rectangle;
     var step = stripeW * 3;
     for (var i = 1; i < rectStripesCount; i += 2) {
       final p1 = Offset(x + step, y);

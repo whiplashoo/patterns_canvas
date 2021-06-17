@@ -1,6 +1,10 @@
 * TODO: Add option to control how many stripes are drawn
-* TODO: Publish as plugin
 * TODO: Consider adding a serialization function for objects
+
+## 0.3.3
+
+* Fix Dart formatting.
+* Update README.
 
 ## 0.3.2
 

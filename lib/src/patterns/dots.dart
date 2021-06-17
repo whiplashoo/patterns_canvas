@@ -23,9 +23,11 @@ class Dots extends Pattern {
   /// Dots(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const Dots({required this.bgColor, required this.fgColor})
-      : super(patternType: PatternType.dots, bgColor: bgColor, fgColor: fgColor);
+      : super(
+            patternType: PatternType.dots, bgColor: bgColor, fgColor: fgColor);
 
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
     var rectSide = maxDimension / circlesCount;
     var horizontalSquaresCount = width / rectSide;
@@ -42,7 +44,9 @@ class Dots extends Pattern {
         paint
           ..style = PaintingStyle.fill
           ..color = fgColor;
-        Rect oval = Rect.fromCircle(center: Offset(x + dx + rectSide / 2, y + dy + rectSide / 2), radius: rectSide / 4);
+        Rect oval = Rect.fromCircle(
+            center: Offset(x + dx + rectSide / 2, y + dy + rectSide / 2),
+            radius: rectSide / 4);
         dotsPath.addOval(oval);
         dx += rectSide;
       }

@@ -23,9 +23,13 @@ class Crosshatch extends Pattern {
   String get description => "Crosshatch";
 
   const Crosshatch({required this.bgColor, required this.fgColor})
-      : super(patternType: PatternType.crosshatch, bgColor: bgColor, fgColor: fgColor);
+      : super(
+            patternType: PatternType.crosshatch,
+            bgColor: bgColor,
+            fgColor: fgColor);
 
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
     var rectSide = maxDimension / squaresCount;
     var horizontalSquaresCount = width / rectSide;
