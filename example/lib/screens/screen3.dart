@@ -21,8 +21,6 @@ class _Screen3State extends State<Screen3> {
       body: Center(
         child: CustomPaint(
           size: const Size(double.infinity, double.infinity),
-          isComplex: true,
-          willChange: true,
           painter: MyPainter(context),
         ),
       ),

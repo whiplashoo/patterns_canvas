@@ -66,7 +66,7 @@ class MyPainter extends CustomPainter {
         Pattern.fromValues(patternType: PatternType.checkers, bgColor: Colors.blueGrey, fgColor: Colors.deepOrange);
     p2.paintOnRect(canvas, size, rect2);
 
-    // 3. From a String shorthand in the form of `pattern_backgroundHex_foregroundHex`:
+    // 3. From a String representation in the form of `pattern_backgroundHex_foregroundHex`:
     final Pattern p3 = Pattern.fromString("verticalThick_e17c05_525252");
     p3.paintOnRect(canvas, size, rect3);
 

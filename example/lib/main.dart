@@ -2,6 +2,7 @@ import 'package:example/screens/screen1.dart';
 import 'package:example/screens/screen2.dart';
 import 'package:example/screens/screen3.dart';
 import 'package:example/screens/screen4.dart';
+import 'package:example/screens/screen5.dart';
 import 'package:flutter/material.dart';
 import 'package:patterns_canvas/patterns_canvas.dart';
 
@@ -12,6 +13,7 @@ void main() {
       'screen2': (ctx) => Screen2(),
       'screen3': (ctx) => Screen3(),
       'screen4': (ctx) => Screen4(),
+      'screen5': (ctx) => Screen5(),
     },
     home: Scaffold(
       body: MyExampleWidget(),
@@ -55,6 +57,12 @@ class MyExampleWidget extends StatelessWidget {
               Navigator.pushNamed(context, 'screen4');
             },
             child: Text('Scaling settings'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, 'screen5');
+            },
+            child: Text('Test pad'),
           ),
         ],
       ),
