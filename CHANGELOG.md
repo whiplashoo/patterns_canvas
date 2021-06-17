@@ -1,7 +1,11 @@
-* TODO: README
 * TODO: Add option to control how many stripes are drawn
 * TODO: Publish as plugin
 * TODO: Consider adding a serialization function for objects
+
+## 0.3.1
+
+* Αdd a test pad example screen. 
+* Finish README first draft.
 
 ## 0.3.0
 
