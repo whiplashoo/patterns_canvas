@@ -15,7 +15,7 @@
 </p>
 
 ## Simple Example
-Inside your `CustomPainter` class's `paint` method, instantiate a `Pattern` class with background (`bgColor`) and foreground (`fgColor`) colors and use one of its `paintOn` methods:
+Inside your `CustomPainter` class's `paint` method, create a `Pattern` class with background (`bgColor`) and foreground (`fgColor`) colors and use one of its `paintOn` methods:
 
 ```
 class MyPainter extends CustomPainter {
@@ -42,14 +42,14 @@ Results in this pattern drawn:
 
 
 ## `Pattern` constructors and types:
-You can construct a Pattern with three different ways:
+You can construct a `Pattern` with three different ways:
 
 1. Directly with a `Pattern` type constructor:
 ````
 final Pattern p1 = DiagonalStripesLight(bgColor: Colors.yellowAccent, fgColor: Colors.black);
 ````
 
-2. With the Pattern.fromValues factory constructor:
+2. With the `Pattern.fromValues` factory constructor:
 ````
 final Pattern p2 = Pattern.fromValues(patternType: PatternType.diagonalLight, bgColor: Colors.yellowAccent, fgColor: Colors.black);
 ````
@@ -57,12 +57,6 @@ final Pattern p2 = Pattern.fromValues(patternType: PatternType.diagonalLight, bg
 3. From a String representation in the form of `pattern_backgroundHex_foregroundHex`:
 ````
 final Pattern p3 = Pattern.fromString("diagonalLight_ffff00_000000");
-````
-
-````
-pattern.paintOnCanvas(canvas, size);
-
-pattern.paintOnWidget(canvas, size);
 ````
 
 ## Usage
@@ -101,7 +95,7 @@ class MyPainter extends CustomPainter {
 }
 ```
 
-You can use this methods to draw on `Canvas` shapes:
+You can use the below methods to draw on `Canvas` shapes:
 ```
 pattern.paintOnPath(canvas, size, path);
 pattern.paintOnRect(canvas, size, rect);
@@ -112,7 +106,7 @@ pattern.paintOnCircle(canvas, size, center, radius);
 Check the [Scale behavior setting](#scale-behavior-setting) section for more info on how the `Pattern` can be drawn.
 
 ### Painting patterns on the whole `Canvas`:
-As above, but you can use the `paintOnCanvas` method to draw the pattern on the whole Canvas:
+As above, but you can use the `paintOnCanvas` method to draw the pattern on the whole `Canvas`:
 
 ````
 TexturePattern(bgColor: Colors.white, fgColor: Colors.blueGrey).paintOnCanvas(canvas, size);
@@ -125,12 +119,46 @@ The result of the above paints:
 </p>
 
 ### Painting patterns on a Widget:
+To draw patterns on a Widget, you need to:
+
+- Wrap the Widget with a `CustomPaint`:
+````
+CustomPaint(
+  painter: ContainerPatternPainter(),
+  child: Container(
+    width: 600,
+    height: 200,
+    child: Center(
+      child: Text("Painting on a Container"),
+    ),
+  ),
+),
+````
+- Inside your `CustomPainter`, create a `Pattern` and use its `paintOnWidget` method to paint with it:
+
+````
+class ContainerPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    VerticalStripesThick(bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f)).paintOnWidget(canvas, size);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+````
+
+<p align="center">
+<img width="30%" src="https://user-images.githubusercontent.com/9117427/122257224-79ffd800-ced8-11eb-9411-913d9a33e97c.jpg"/>
+</p>
+
+Rectangular widgets, like Containers, Rows, Columns, IconButtons, etc. can be painted directly with the above method. For widgets that have a custom shape, like a `BottomAppbar`, you need to provide a different `clipBehavior` property, e.g. `Clip.antiAlias`, to make sure the pattern is clipped to the special shape. Check the second screen in the example app for more.
 
 
 
 ## Patterns and settings
 ### Available patterns
-All Patterns require a background color and foreground color on instantiation. The currently available patterns are:
+All Patterns require a background and foreground color on instantiation. The currently available patterns are:
 
 <p align="center">
 <img width="30%" src="https://user-images.githubusercontent.com/9117427/122257217-78ceab00-ced8-11eb-8a83-267272c73c10.jpg"/>
@@ -153,7 +181,7 @@ All Patterns require a background color and foreground color on instantiation. T
 
 
 ### Scale behavior setting
-All patterns are **by default scaled to their container (`patternScaleBehavior = PatternScaleBehavior.container`)**. This means that, regardless its size, a `Rectangle` will contain 40 diagonal stripes or 40 dots.
+All patterns are **by default scaled to their container (`patternScaleBehavior = PatternScaleBehavior.container`)**. This means that, regardless of its size, a `Rectangle` will contain 40 diagonal stripes or 40 dots.
 
 ````
 DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect1);
@@ -162,7 +190,7 @@ Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2);
 
 <p align="center">
 <img width="50%" src="https://user-images.githubusercontent.com/9117427/122351725-1963b000-cf57-11eb-993a-af64abb5e5da.png"/>
-
+</p>
 
 You can change this behavior by providing a different argument to the `paintOn` method:
 
@@ -175,7 +203,7 @@ Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patter
 
 <p align="center">
 <img width="50%" src="https://user-images.githubusercontent.com/9117427/122351742-1f599100-cf57-11eb-858e-16a9de68b360.png"/>
-
+</p>
 
 Pass `patternScaleBehavior: PatternScaleBehavior.canvas` and a `customRect` (e.g. a `Rectangle` with half the `Canvas` height) to further customize the `Pattern` size:
 
@@ -187,5 +215,10 @@ Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patter
 
 <p align="center">
 <img width="50%" src="https://user-images.githubusercontent.com/9117427/122351763-2385ae80-cf57-11eb-9193-946b0b10656c.png"/>
+</p>
+  
+<p align="center">
+<img width="30%" src="https://user-images.githubusercontent.com/9117427/122357856-c42a9d00-cf5c-11eb-9578-a8f96f723ea1.jpg"/>
+</p>
 
 It is also in the Roadmap to allow for selecting the number of `Pattern` features to use (e.g. draw only 5 diagonal stripes).
