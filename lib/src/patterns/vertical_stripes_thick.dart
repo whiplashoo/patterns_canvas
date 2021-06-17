@@ -5,11 +5,23 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class VerticalStripesThick extends Pattern {
+  /// The [Pattern]'s background color.
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int stripesCount = 60;
   String get description => "Vertical Stripes Thick";
 
+  /// Paints a [Pattern] made of 40 thick vertical stripes across the object's width
+  /// with the foreground color as the stripe color.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// VerticalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const VerticalStripesThick({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.verticalThick, bgColor: bgColor, fgColor: fgColor);
 

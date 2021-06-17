@@ -6,11 +6,22 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class Checkers extends Pattern {
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int squaresCount = 40;
   String get description => "Checkers";
 
+  /// Paints a [Pattern] made of 40 squares across the largest side
+  /// with alternating colors.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// Checkers(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const Checkers({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.checkers, bgColor: bgColor, fgColor: fgColor);
 

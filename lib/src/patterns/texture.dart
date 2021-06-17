@@ -6,11 +6,24 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class TexturePattern extends Pattern {
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int squaresCount = 40;
   String get description => "Texture";
 
+  /// Paints a [Pattern] made of 40 squares inside bigger squares across the object's
+  /// larger side with the foreground color as the inner square's color.
+  ///
+  /// The squares are drawn diagonally.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// TexturePattern(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const TexturePattern({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.texture, bgColor: bgColor, fgColor: fgColor);
 

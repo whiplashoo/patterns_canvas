@@ -2,6 +2,10 @@
 * TODO: Publish as plugin
 * TODO: Consider adding a serialization function for objects
 
+## 0.3.2
+
+* Αdd classes and methods DartDoc documentation.
+
 ## 0.3.1
 
 * Αdd a test pad example screen. 

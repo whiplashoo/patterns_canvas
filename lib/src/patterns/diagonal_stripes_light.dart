@@ -6,11 +6,22 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class DiagonalStripesLight extends Pattern {
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int stripesCount = 40;
   String get description => "Diagonal Stripes Light";
 
+  /// Paints a [Pattern] made of 40 thin diagonal stripes across the largest
+  /// side with the foreground color as the stripe color.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// DiagonalStripesLight(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const DiagonalStripesLight({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.diagonalLight, bgColor: bgColor, fgColor: fgColor);
 

@@ -5,11 +5,22 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class HorizontalStripesThick extends Pattern {
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int stripesCount = 60;
   String get description => "Horizontal Stripes Thick";
 
+  /// Paints a [Pattern] made of 40 thick horizontal stripes across the object's height
+  /// with the foreground color as the stripe color.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// HorizontalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const HorizontalStripesThick({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.horizontalThick, bgColor: bgColor, fgColor: fgColor);
 

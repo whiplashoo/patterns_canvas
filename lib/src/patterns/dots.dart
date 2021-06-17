@@ -6,11 +6,22 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class Dots extends Pattern {
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int circlesCount = 20;
   String get description => "Dots";
 
+  /// Paints a [Pattern] made of 40 circles (dots) inside bigger squares across the object's
+  /// larger side with the foreground color as the circle's color.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// Dots(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const Dots({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.dots, bgColor: bgColor, fgColor: fgColor);
 

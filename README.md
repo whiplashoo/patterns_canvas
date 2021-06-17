@@ -205,7 +205,7 @@ Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patter
 <img width="50%" src="https://user-images.githubusercontent.com/9117427/122351742-1f599100-cf57-11eb-858e-16a9de68b360.png"/>
 </p>
 
-Pass `patternScaleBehavior: PatternScaleBehavior.canvas` and a `customRect` (e.g. a `Rectangle` with half the `Canvas` height) to further customize the `Pattern` size:
+Pass `patternScaleBehavior: PatternScaleBehavior.customRect` and a `customRect` (e.g. a `Rectangle` with half the `Canvas` height) to further customize the `Pattern` size:
 
 ````
 final Rect halfCanvas = Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2); // a Rectangle with half the Canvas height.

@@ -16,6 +16,7 @@ import 'patterns/vertical_stripes_light.dart';
 import 'patterns/vertical_stripes_thick.dart';
 import 'utils/utils.dart';
 
+/// The available [Pattern] types. Use in the [Pattern.fromValues] constructor.
 enum PatternType {
   dots,
   diagonalLight,
@@ -31,16 +32,62 @@ enum PatternType {
   texture
 }
 
+/// Changes how the pattern is drawn on the [Canvas] shape or
+/// [Widget]. Used in the [paintOn] methods of each [Pattern].
+///
+/// All patterns are by default scaled to their container
+/// ([PatternScaleBehavior.container]). This means that, regardless
+/// of its size, a `Rectangle` will contain 40 diagonal stripes or 40 dots.
+///
+/// Use [PatternScaleBehavior.canvas] to scale the pattern to the whole [Canvas]
+/// area. Now the `Canvas` will contain 40 diagonal stripes or 40 dots, so, a
+/// `Rectangle` will contain as many dots or stripes as it can fit.
+///
+/// ```dart
+/// Pattern p = DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor);
+/// p.paintOnRect(canvas, size, rect1, patternScaleBehavior: PatternScaleBehavior.canvas);
+/// ```
+///
+/// Use [PatternScaleBehavior.customRect] and a [customRect] (e.g. a [Rectangle] with
+/// half the [Canvas] height) to further customize the [Pattern] size:
+///
+/// ```dart
+/// Rect halfCanvas = Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2);
+/// p.paintOnRect(canvas, size, rect1, patternScaleBehavior: PatternScaleBehavior.customRect
+/// , customRect: halfCanvas);
+/// ```
 enum PatternScaleBehavior { container, customRect, canvas }
 
+///You can construct a [Pattern] with three different ways:
+///
+///- Directly with a [Pattern] type constructor:
+///```dart
+///final Pattern p1 = DiagonalStripesLight(bgColor: Colors.yellowAccent, fgColor: Colors.black);
+///```
+///
+///- With the [Pattern.fromValues] factory constructor:
+///```dart
+///final Pattern p2 = Pattern.fromValues(patternType: PatternType.diagonalLight, bgColor: Colors.yellowAccent, fgColor: Colors.black);
+///```
+///
+///- From a String representation in the form of "pattern_backgroundHex_foregroundHex":
+///```dart
+///final Pattern p3 = Pattern.fromString("diagonalLight_ffff00_000000");
+///```
 abstract class Pattern {
+  /// The [Pattern]'s background color.
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final PatternType patternType;
   String get description => "Pattern";
 
   const Pattern({required this.patternType, required this.bgColor, required this.fgColor});
 
+  /// Instantiate a [Pattern] from a String representation in the form
+  /// of "pattern_backgroundHex_foregroundHex".
   factory Pattern.fromString(String stringDescription) {
     var splitDescription = stringDescription.split("_");
     PatternType patternType =
@@ -50,6 +97,7 @@ abstract class Pattern {
     return Pattern.fromValues(patternType: patternType, bgColor: bgColor, fgColor: fgColor);
   }
 
+  /// Instantiate a [Pattern] from a type, background and foreground colors.
   factory Pattern.fromValues({required PatternType patternType, required Color bgColor, required Color fgColor}) {
     if (patternType == PatternType.dots) return Dots(bgColor: bgColor, fgColor: fgColor);
     if (patternType == PatternType.verticalThick) return VerticalStripesThick(bgColor: bgColor, fgColor: fgColor);
@@ -66,12 +114,27 @@ abstract class Pattern {
     throw "Can't create pattern";
   }
 
+  /// After clipping the canvas to the shape we want, paint the [Pattern] on the rectangle
+  /// defined by the provided [x], [y], [width], [height].
   void paintWithPattern(Canvas canvas, double x, double y, double width, double height);
 
+  /// Paint the [Pattern] on the whole [Canvas] size.
   void paintOnCanvas(Canvas canvas, Size size) {
     paintWithPattern(canvas, 0.0, 0.0, size.width, size.height);
   }
 
+  /// Paint the [Pattern] on a widget.
+  ///
+  /// The widget must be wrapped inside a CustomPaint first.
+  ///
+  /// Rectangular widgets, like Containers, Rows, Columns, IconButtons, etc. can be
+  /// painted directly with the above method. For widgets that have a custom shape,
+  /// like a [BottomAppbar], you need to provide a different [clipBehavior] property,
+  /// e.g. [Clip.antiAlias], to make sure the pattern is clipped to the special shape.
+  /// Check the second screen in the example app for more.
+  ///
+  /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
+  /// to scale the [Pattern] to.
   void paintOnWidget(Canvas canvas, Size size,
       {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
     canvas.save();
@@ -95,10 +158,10 @@ abstract class Pattern {
     canvas.restore();
   }
 
-  ///
+  /// Paint the [Pattern] on a [Path].
   ///
   /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
-  /// to scale the pattern to.
+  /// to scale the [Pattern] to.
   void paintOnPath(Canvas canvas, Size size, Path path,
       {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
     canvas.save();
@@ -121,6 +184,10 @@ abstract class Pattern {
     canvas.restore();
   }
 
+  /// Paint the [Pattern] on a [Rect].
+  ///
+  /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
+  /// to scale the [Pattern] to.
   void paintOnRect(Canvas canvas, Size size, Rect rect,
       {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
     canvas.save();
@@ -139,6 +206,10 @@ abstract class Pattern {
     canvas.restore();
   }
 
+  /// Paint the [Pattern] on a [RRect].
+  ///
+  /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
+  /// to scale the [Pattern] to.
   void paintOnRRect(Canvas canvas, Size size, RRect rRect,
       {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
     canvas.save();
@@ -157,10 +228,14 @@ abstract class Pattern {
     canvas.restore();
   }
 
-  void paintOnCircle(Canvas canvas, Size size, Offset c, double radius,
+  /// Paint the [Pattern] on a [Circle], defined by a [center] [Offset] and a [radius].
+  ///
+  /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
+  /// to scale the [Pattern] to.
+  void paintOnCircle(Canvas canvas, Size size, Offset center, double radius,
       {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
     canvas.save();
-    final Rect rect = Rect.fromCircle(center: Offset(c.dx, c.dy), radius: radius);
+    final Rect rect = Rect.fromCircle(center: Offset(center.dx, center.dy), radius: radius);
     final Path circle = Path()..addOval(rect);
     canvas.clipPath(circle);
     switch (patternScaleBehavior) {

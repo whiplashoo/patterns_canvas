@@ -6,11 +6,22 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class SubtlePatch extends Pattern {
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int squaresCount = 40;
   String get description => "Subtle Patch";
 
+  /// Paints a [Pattern] made of 40 squares inside bigger squares across the object's
+  /// larger side with the foreground color as the inner square's color.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// SubtlePatch(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const SubtlePatch({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.subtlepatch, bgColor: bgColor, fgColor: fgColor);
 

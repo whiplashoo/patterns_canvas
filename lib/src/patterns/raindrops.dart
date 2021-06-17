@@ -6,11 +6,22 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class Raindrops extends Pattern {
+  /// The [Pattern]'s background color.
   final Color bgColor;
+
+  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
   final int dropsCount = 20;
   String get description => "Raindrops";
 
+  /// Paints a [Pattern] made of 40 raindrop shapes inside bigger squares across the object's
+  /// larger side with the foreground color as the raindrop's color.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// Raindrops(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const Raindrops({required this.bgColor, required this.fgColor})
       : super(patternType: PatternType.raindrops, bgColor: bgColor, fgColor: fgColor);
 
