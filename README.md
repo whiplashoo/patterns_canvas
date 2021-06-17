@@ -2,10 +2,11 @@
 <h1 align="center"> Patterns </h1>
 <h2 align="center"> Flutter library to draw patterns like stripes or dots on Canvas elements or widgets. </h2>
 
-# patterns_canvas
+# patterns_canvas  [![Pub Version](https://img.shields.io/pub/v/patterns_canvas?label=patterns_canvas&labelColor=333940&logo=dart)](https://pub.dev/packages/patterns_canvas)
+
 
 ### A utility library that lets you paint Canvas shapes or widgets with patterns like dots, stripes, squares, etc.:
-<br/>
+
 <p align="center">
 <img width="30%" src="https://user-images.githubusercontent.com/9117427/122257205-75d3ba80-ced8-11eb-8eae-ab98398437b8.jpg"/>
   &nbsp; &nbsp;
