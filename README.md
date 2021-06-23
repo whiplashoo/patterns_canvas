@@ -18,7 +18,7 @@
 ## Simple Example
 Inside your `CustomPainter` class's `paint` method, create a `Pattern` class with background (`bgColor`) and foreground (`fgColor`) colors and use one of its `paintOn` methods:
 
-```
+```dart
 class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -46,19 +46,19 @@ Results in this pattern drawn:
 You can construct a `Pattern` with three different ways:
 
 1. Directly with a `Pattern` type constructor:
-````
+```dart
 final Pattern p1 = DiagonalStripesLight(bgColor: Colors.yellowAccent, fgColor: Colors.black);
-````
+```
 
 2. With the `Pattern.fromValues` factory constructor:
-````
+```dart
 final Pattern p2 = Pattern.fromValues(patternType: PatternType.diagonalLight, bgColor: Colors.yellowAccent, fgColor: Colors.black);
-````
+```
 
 3. From a String representation in the form of `pattern_backgroundHex_foregroundHex`:
-````
+```dart
 final Pattern p3 = Pattern.fromString("diagonalLight_ffff00_000000");
-````
+```
 
 ## Usage
 ### Painting patterns on a `Canvas` shape:
@@ -66,7 +66,7 @@ final Pattern p3 = Pattern.fromString("diagonalLight_ffff00_000000");
 - Create a `Pattern` object with the desired type and colors.
 - Use the corresponding paint method to draw the pattern on the object.
 
-```
+```dart
 // In the build method of your screen:
 ...
 body: Center(
@@ -97,7 +97,7 @@ class MyPainter extends CustomPainter {
 ```
 
 You can use the below methods to draw on `Canvas` shapes:
-```
+```dart
 pattern.paintOnPath(canvas, size, path);
 pattern.paintOnRect(canvas, size, rect);
 pattern.paintOnRRect(canvas, size, rRect);
@@ -109,9 +109,9 @@ Check the [Scale behavior setting](#scale-behavior-setting) section for more inf
 ### Painting patterns on the whole `Canvas`:
 As above, but you can use the `paintOnCanvas` method to draw the pattern on the whole `Canvas`:
 
-````
+```dart
 TexturePattern(bgColor: Colors.white, fgColor: Colors.blueGrey).paintOnCanvas(canvas, size);
-````
+```
 
 The result of the above paints:
 
@@ -123,7 +123,7 @@ The result of the above paints:
 To draw patterns on a Widget, you need to:
 
 - Wrap the Widget with a `CustomPaint`:
-````
+```dart
 CustomPaint(
   painter: ContainerPatternPainter(),
   child: Container(
@@ -134,10 +134,10 @@ CustomPaint(
     ),
   ),
 ),
-````
+```
 - Inside your `CustomPainter`, create a `Pattern` and use its `paintOnWidget` method to paint with it:
 
-````
+```dart
 class ContainerPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -147,7 +147,7 @@ class ContainerPatternPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
-````
+```
 
 <p align="center">
 <img width="30%" src="https://user-images.githubusercontent.com/9117427/122257224-79ffd800-ced8-11eb-9411-913d9a33e97c.jpg"/>
@@ -184,10 +184,10 @@ All Patterns require a background and foreground color on instantiation. The cur
 ### Scale behavior setting
 All patterns are **by default scaled to their container (`patternScaleBehavior = PatternScaleBehavior.container`)**. This means that, regardless of its size, a `Rectangle` will contain 40 diagonal stripes or 40 dots.
 
-````
+```dart
 DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect1);
 Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2);
-````
+```
 
 <p align="center">
 <img width="50%" src="https://user-images.githubusercontent.com/9117427/122351725-1963b000-cf57-11eb-993a-af64abb5e5da.png"/>
@@ -197,10 +197,10 @@ You can change this behavior by providing a different argument to the `paintOn` 
 
 Pass `patternScaleBehavior: PatternScaleBehavior.canvas` to **scale the pattern to the whole `Canvas` area**. Now the `Canvas` will contain 40 diagonal stripes or 40 dots, so, a `Rectangle` will contain as many dots or stripes as it can fit:
 
-````
+```dart
 DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect1, patternScaleBehavior: PatternScaleBehavior.canvas);
 Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patternScaleBehavior: PatternScaleBehavior.canvas);
-````
+```
 
 <p align="center">
 <img width="50%" src="https://user-images.githubusercontent.com/9117427/122351742-1f599100-cf57-11eb-858e-16a9de68b360.png"/>
@@ -208,11 +208,11 @@ Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patter
 
 Pass `patternScaleBehavior: PatternScaleBehavior.customRect` and a `customRect` (e.g. a `Rectangle` with half the `Canvas` height) to further customize the `Pattern` size:
 
-````
+```dart
 final Rect halfCanvas = Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2); // a Rectangle with half the Canvas height.
 DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect1, patternScaleBehavior: PatternScaleBehavior.customRect, customRect: halfCanvas );
 Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patternScaleBehavior: PatternScaleBehavior.customRect, customRect: halfCanvas );
-````
+```
 
 <p align="center">
 <img width="50%" src="https://user-images.githubusercontent.com/9117427/122351763-2385ae80-cf57-11eb-9193-946b0b10656c.png"/>
@@ -222,4 +222,4 @@ Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, rect2, patter
 <img width="30%" src="https://user-images.githubusercontent.com/9117427/122357856-c42a9d00-cf5c-11eb-9578-a8f96f723ea1.jpg"/>
 </p>
 
-It is also in the Roadmap to allow for selecting the number of `Pattern` features to use (e.g. draw only 5 diagonal stripes).
+It's also in the Roadmap to allow for selecting the number of `Pattern` features to use (e.g. draw only 5 diagonal stripes).
