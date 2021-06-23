@@ -23,13 +23,9 @@ class DiagonalStripesLight extends Pattern {
   /// DiagonalStripesLight(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const DiagonalStripesLight({required this.bgColor, required this.fgColor})
-      : super(
-            patternType: PatternType.diagonalLight,
-            bgColor: bgColor,
-            fgColor: fgColor);
+      : super(patternType: PatternType.diagonalLight, bgColor: bgColor, fgColor: fgColor);
 
-  void paintWithPattern(
-      Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
     final stripeW = maxDimension / stripesCount / 6;
     var step = stripeW * 9;
@@ -37,17 +33,21 @@ class DiagonalStripesLight extends Pattern {
       ..style = PaintingStyle.fill
       ..color = bgColor;
     canvas.drawRect(Rect.fromLTWH(x, y, width, height), paint);
-    final rectStripesCount =
-        stripesCount * 2.5; // to make sure we cover the whole rectangle
+    final rectStripesCount = stripesCount * 2.5; // to make sure we cover the whole rectangle
+    final allStripesPath = Path();
     for (var i = 1; i < rectStripesCount; i += 2) {
-      final p1 = Offset(x + step, y);
-      final p2 = Offset(x, y + step);
-      paint
-        ..color = fgColor
-        ..strokeCap = StrokeCap.round
-        ..strokeWidth = stripeW;
-      canvas.drawLine(p1, p2, paint);
+      final stripePath = Path();
+      stripePath.moveTo(x - stripeW + step, y);
+      stripePath.lineTo(x + step, y);
+      stripePath.lineTo(x, y + step);
+      stripePath.lineTo(x - stripeW, y + step);
+      stripePath.close();
+      allStripesPath.addPath(stripePath, Offset.zero);
       step += stripeW * 9;
     }
+    paint
+      ..style = PaintingStyle.fill
+      ..color = fgColor;
+    canvas.drawPath(allStripesPath, paint);
   }
 }
