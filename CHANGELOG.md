@@ -1,6 +1,12 @@
 * TODO: Add option to control how many stripes are drawn
 * TODO: Consider adding a serialization function for objects
 
+## 0.3.4
+
+* Optimize diagonal patterns drawing.
+* Update README formatting.
+* Add example.md Cookbook.
+
 ## 0.3.3
 
 * Fix Dart formatting.
