@@ -57,34 +57,29 @@ class MyPainter extends CustomPainter {
     final rectH = (size.height - verticalPadding * 7) / 6;
     var dx = horizontalPadding;
     var dy = verticalPadding;
-    TextPainter tp = TextPainter(
-        textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+    TextPainter tp = TextPainter(textAlign: TextAlign.left, textDirection: TextDirection.ltr);
     for (var i = 0; i < 6; i++) {
       final Pattern p = patternsList[i];
-      TextSpan span = TextSpan(
-          style: TextStyle(color: Colors.grey[900]), text: p.description);
+      TextSpan span = TextSpan(style: TextStyle(color: Colors.grey[900]), text: p.description);
       tp.text = span;
       tp.layout();
       tp.paint(canvas, Offset(dx, dy - 20));
 
       final rect = Rect.fromLTWH(dx, dy, rectW, rectH);
-      p.paintOnRect(canvas, size, rect,
-          patternScaleBehavior: PatternScaleBehavior.canvas);
+      p.paintOnRect(canvas, size, rect);
       dy += verticalPadding + rectH;
     }
     dx += horizontalPadding + rectW;
     dy = verticalPadding;
     for (var i = 6; i < 12; i++) {
       final Pattern p = patternsList[i];
-      TextSpan span = TextSpan(
-          style: TextStyle(color: Colors.grey[900]), text: p.description);
+      TextSpan span = TextSpan(style: TextStyle(color: Colors.grey[900]), text: p.description);
       tp.text = span;
       tp.layout();
       tp.paint(canvas, Offset(dx, dy - 20));
 
       final rect = Rect.fromLTWH(dx, dy, rectW, rectH);
-      p.paintOnRect(canvas, size, rect,
-          patternScaleBehavior: PatternScaleBehavior.canvas);
+      p.paintOnRect(canvas, size, rect);
       dy += verticalPadding + rectH;
     }
   }
