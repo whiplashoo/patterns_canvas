@@ -10,10 +10,10 @@ class HorizontalStripesThick extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int stripesCount = 60;
+  final int stripesCount = 30;
   String get description => "Horizontal Stripes Thick";
 
-  /// Paints a [Pattern] made of 40 thick horizontal stripes across the object's height
+  /// Paints a [Pattern] made of 30 thick horizontal stripes across the object's height
   /// with the foreground color as the stripe color.
   ///
   /// Example:

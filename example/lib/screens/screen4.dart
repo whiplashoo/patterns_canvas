@@ -46,15 +46,18 @@ class MyPainter extends CustomPainter {
     const fontColor = Colors.black87;
     const bgColor = Colors.indigo;
     const fgColor = Colors.yellow;
-    TextPainter tp = TextPainter(textAlign: TextAlign.left, textDirection: TextDirection.ltr);
-    TextSpan span =
-        TextSpan(style: TextStyle(color: fontColor), text: "• A pattern by default is scaled to its container:");
+    TextPainter tp = TextPainter(
+        textAlign: TextAlign.left, textDirection: TextDirection.ltr);
+    TextSpan span = TextSpan(
+        style: TextStyle(color: fontColor),
+        text: "• A pattern by default is scaled to its container:");
     tp.text = span;
     tp.layout();
     tp.paint(canvas, Offset(dx, dy));
     dy += verticalPadding;
     span = TextSpan(
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
+        style: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
         text: "PatternScaleBehavior.container (default)");
     tp.text = span;
     tp.layout();
@@ -63,17 +66,21 @@ class MyPainter extends CustomPainter {
     DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor)
         .paintOnRect(canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH));
     dx += horizontalPadding + rectW;
-    Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH));
+    Dots(bgColor: bgColor, fgColor: fgColor)
+        .paintOnRect(canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH));
 
     dx = horizontalPadding;
     dy += rectH + verticalPadding;
-    span = TextSpan(style: TextStyle(color: fontColor), text: "• It can also scale to the whole canvas:");
+    span = TextSpan(
+        style: TextStyle(color: fontColor),
+        text: "• It can also scale to the whole canvas:");
     tp.text = span;
     tp.layout();
     tp.paint(canvas, Offset(dx, dy));
     dy += verticalPadding;
     span = TextSpan(
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
+        style: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
         text: "PatternScaleBehavior.canvas");
     tp.text = span;
     tp.layout();
@@ -83,25 +90,30 @@ class MyPainter extends CustomPainter {
         canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH),
         patternScaleBehavior: PatternScaleBehavior.canvas);
     dx += horizontalPadding + rectW;
-    Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH),
+    Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(
+        canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH),
         patternScaleBehavior: PatternScaleBehavior.canvas);
 
     dx = horizontalPadding;
     dy += rectH + verticalPadding;
-    span = TextSpan(style: TextStyle(color: fontColor), text: "• Or to a custom Rectangle that you provide:");
+    span = TextSpan(
+        style: TextStyle(color: fontColor),
+        text: "• Or to a custom Rectangle that you provide:");
     tp.text = span;
     tp.layout();
     tp.paint(canvas, Offset(dx, dy));
     dy += verticalPadding;
     span = TextSpan(
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
+        style: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
         text: "PatternScaleBehavior.customRect");
     tp.text = span;
     tp.layout();
     tp.paint(canvas, Offset(dx, dy));
     dy += verticalPadding;
     span = TextSpan(
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
+        style: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
         text: "customRect: Rect.fromLTWH(0, height / 2, width, height/2)");
     tp.text = span;
     tp.layout();
@@ -111,9 +123,11 @@ class MyPainter extends CustomPainter {
         canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH),
         patternScaleBehavior: PatternScaleBehavior.canvas);
     dx += horizontalPadding + rectW;
-    Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH),
+    Dots(bgColor: bgColor, fgColor: fgColor).paintOnRect(
+        canvas, size, Rect.fromLTWH(dx, dy, rectW, rectH),
         patternScaleBehavior: PatternScaleBehavior.customRect,
-        customRect: Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2));
+        customRect:
+            Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2));
   }
 
   @override

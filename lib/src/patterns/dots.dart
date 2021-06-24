@@ -11,10 +11,10 @@ class Dots extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int circlesCount = 20;
+  final int circlesCount = 10;
   String get description => "Dots";
 
-  /// Paints a [Pattern] made of 40 circles (dots) inside bigger squares across the object's
+  /// Paints a [Pattern] made of 10 circles (dots) inside bigger squares across the object's
   /// larger side with the foreground color as the circle's color.
   ///
   /// Example:

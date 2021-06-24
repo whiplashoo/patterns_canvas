@@ -11,10 +11,10 @@ class Raindrops extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int dropsCount = 20;
+  final int dropsCount = 10;
   String get description => "Raindrops";
 
-  /// Paints a [Pattern] made of 40 raindrop shapes inside bigger squares across the object's
+  /// Paints a [Pattern] made of 10 raindrop shapes inside bigger squares across the object's
   /// larger side with the foreground color as the raindrop's color.
   ///
   /// Example:

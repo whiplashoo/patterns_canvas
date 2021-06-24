@@ -84,39 +84,59 @@ abstract class Pattern {
   final PatternType patternType;
   String get description => "Pattern";
 
-  const Pattern({required this.patternType, required this.bgColor, required this.fgColor});
+  const Pattern(
+      {required this.patternType,
+      required this.bgColor,
+      required this.fgColor});
 
   /// Instantiate a [Pattern] from a String representation in the form
   /// of "pattern_backgroundHex_foregroundHex".
   factory Pattern.fromString(String stringDescription) {
     var splitDescription = stringDescription.split("_");
-    PatternType patternType =
-        PatternType.values.firstWhere((e) => e.toString() == 'PatternType.' + splitDescription.first);
+    PatternType patternType = PatternType.values.firstWhere(
+        (e) => e.toString() == 'PatternType.' + splitDescription.first);
     Color bgColor = hexOrRGBToColor('#' + splitDescription[1]);
     Color fgColor = hexOrRGBToColor('#' + splitDescription.last);
-    return Pattern.fromValues(patternType: patternType, bgColor: bgColor, fgColor: fgColor);
+    return Pattern.fromValues(
+        patternType: patternType, bgColor: bgColor, fgColor: fgColor);
   }
 
   /// Instantiate a [Pattern] from a type, background and foreground colors.
-  factory Pattern.fromValues({required PatternType patternType, required Color bgColor, required Color fgColor}) {
-    if (patternType == PatternType.dots) return Dots(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.verticalThick) return VerticalStripesThick(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.verticalLight) return VerticalStripesLight(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.diagonalThick) return DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.diagonalLight) return DiagonalStripesLight(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.horizontalLight) return HorizontalStripesLight(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.horizontalThick) return HorizontalStripesThick(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.subtlepatch) return SubtlePatch(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.texture) return TexturePattern(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.raindrops) return Raindrops(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.checkers) return Checkers(bgColor: bgColor, fgColor: fgColor);
-    if (patternType == PatternType.crosshatch) return Crosshatch(bgColor: bgColor, fgColor: fgColor);
+  factory Pattern.fromValues(
+      {required PatternType patternType,
+      required Color bgColor,
+      required Color fgColor}) {
+    if (patternType == PatternType.dots)
+      return Dots(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.verticalThick)
+      return VerticalStripesThick(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.verticalLight)
+      return VerticalStripesLight(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.diagonalThick)
+      return DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.diagonalLight)
+      return DiagonalStripesLight(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.horizontalLight)
+      return HorizontalStripesLight(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.horizontalThick)
+      return HorizontalStripesThick(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.subtlepatch)
+      return SubtlePatch(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.texture)
+      return TexturePattern(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.raindrops)
+      return Raindrops(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.checkers)
+      return Checkers(bgColor: bgColor, fgColor: fgColor);
+    if (patternType == PatternType.crosshatch)
+      return Crosshatch(bgColor: bgColor, fgColor: fgColor);
     throw "Can't create pattern";
   }
 
   /// After clipping the canvas to the shape we want, paint the [Pattern] on the rectangle
   /// defined by the provided [x], [y], [width], [height].
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height);
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height);
 
   /// Paint the [Pattern] on the whole [Canvas] size.
   void paintOnCanvas(Canvas canvas, Size size) {
@@ -136,7 +156,9 @@ abstract class Pattern {
   /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
   /// to scale the [Pattern] to.
   void paintOnWidget(Canvas canvas, Size size,
-      {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
+      {PatternScaleBehavior patternScaleBehavior =
+          PatternScaleBehavior.container,
+      Rect? customRect}) {
     canvas.save();
     final rect = Rect.fromLTWH(0.0, 0.0, size.width, size.height);
     canvas.clipRect(rect);
@@ -145,13 +167,14 @@ abstract class Pattern {
         paintWithPattern(canvas, 0.0, 0.0, size.width, size.height);
         break;
       case PatternScaleBehavior.canvas:
-        Size screenSize =
-            WidgetsBinding.instance!.window.physicalSize / WidgetsBinding.instance!.window.devicePixelRatio;
+        Size screenSize = WidgetsBinding.instance!.window.physicalSize /
+            WidgetsBinding.instance!.window.devicePixelRatio;
         paintOnCanvas(canvas, screenSize);
         break;
       case PatternScaleBehavior.customRect:
         (customRect != null)
-            ? paintWithPattern(canvas, customRect.left, customRect.top, customRect.width, customRect.height)
+            ? paintWithPattern(canvas, customRect.left, customRect.top,
+                customRect.width, customRect.height)
             : paintOnCanvas(canvas, size);
         break;
     }
@@ -163,13 +186,18 @@ abstract class Pattern {
   /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
   /// to scale the [Pattern] to.
   void paintOnPath(Canvas canvas, Size size, Path path,
-      {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
+      {PatternScaleBehavior patternScaleBehavior =
+          PatternScaleBehavior.container,
+      Rect? customRect}) {
     canvas.save();
     canvas.clipPath(path);
     switch (patternScaleBehavior) {
       case PatternScaleBehavior.container:
         final Rect boundsRect = path.getBounds();
-        final pathW = boundsRect.width, pathH = boundsRect.height, pathX = boundsRect.left, pathY = boundsRect.top;
+        final pathW = boundsRect.width,
+            pathH = boundsRect.height,
+            pathX = boundsRect.left,
+            pathY = boundsRect.top;
         paintWithPattern(canvas, pathX, pathY, pathW, pathH);
         break;
       case PatternScaleBehavior.canvas:
@@ -177,7 +205,8 @@ abstract class Pattern {
         break;
       case PatternScaleBehavior.customRect:
         (customRect != null)
-            ? paintWithPattern(canvas, customRect.left, customRect.top, customRect.width, customRect.height)
+            ? paintWithPattern(canvas, customRect.left, customRect.top,
+                customRect.width, customRect.height)
             : paintOnCanvas(canvas, size);
         break;
     }
@@ -189,7 +218,9 @@ abstract class Pattern {
   /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
   /// to scale the [Pattern] to.
   void paintOnRect(Canvas canvas, Size size, Rect rect,
-      {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
+      {PatternScaleBehavior patternScaleBehavior =
+          PatternScaleBehavior.container,
+      Rect? customRect}) {
     canvas.save();
     canvas.clipRect(rect);
     switch (patternScaleBehavior) {
@@ -200,7 +231,8 @@ abstract class Pattern {
         paintOnCanvas(canvas, size);
         break;
       case PatternScaleBehavior.customRect:
-        paintWithPattern(canvas, customRect!.left, customRect.top, customRect.width, customRect.height);
+        paintWithPattern(canvas, customRect!.left, customRect.top,
+            customRect.width, customRect.height);
         break;
     }
     canvas.restore();
@@ -211,18 +243,22 @@ abstract class Pattern {
   /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
   /// to scale the [Pattern] to.
   void paintOnRRect(Canvas canvas, Size size, RRect rRect,
-      {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
+      {PatternScaleBehavior patternScaleBehavior =
+          PatternScaleBehavior.container,
+      Rect? customRect}) {
     canvas.save();
     canvas.clipRRect(rRect);
     switch (patternScaleBehavior) {
       case PatternScaleBehavior.container:
-        paintWithPattern(canvas, rRect.left, rRect.top, rRect.width, rRect.height);
+        paintWithPattern(
+            canvas, rRect.left, rRect.top, rRect.width, rRect.height);
         break;
       case PatternScaleBehavior.canvas:
         paintOnCanvas(canvas, size);
         break;
       case PatternScaleBehavior.customRect:
-        paintWithPattern(canvas, customRect!.left, customRect.top, customRect.width, customRect.height);
+        paintWithPattern(canvas, customRect!.left, customRect.top,
+            customRect.width, customRect.height);
         break;
     }
     canvas.restore();
@@ -233,9 +269,12 @@ abstract class Pattern {
   /// If [PatternScaleBehavior.customRect] is specified, you must also provide a [customRect]
   /// to scale the [Pattern] to.
   void paintOnCircle(Canvas canvas, Size size, Offset center, double radius,
-      {PatternScaleBehavior patternScaleBehavior = PatternScaleBehavior.container, Rect? customRect}) {
+      {PatternScaleBehavior patternScaleBehavior =
+          PatternScaleBehavior.container,
+      Rect? customRect}) {
     canvas.save();
-    final Rect rect = Rect.fromCircle(center: Offset(center.dx, center.dy), radius: radius);
+    final Rect rect =
+        Rect.fromCircle(center: Offset(center.dx, center.dy), radius: radius);
     final Path circle = Path()..addOval(rect);
     canvas.clipPath(circle);
     switch (patternScaleBehavior) {
@@ -246,7 +285,8 @@ abstract class Pattern {
         paintOnCanvas(canvas, size);
         break;
       case PatternScaleBehavior.customRect:
-        paintWithPattern(canvas, customRect!.left, customRect.top, customRect.width, customRect.height);
+        paintWithPattern(canvas, customRect!.left, customRect.top,
+            customRect.width, customRect.height);
         break;
     }
     canvas.restore();

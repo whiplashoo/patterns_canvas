@@ -11,10 +11,10 @@ class DiagonalStripesLight extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int stripesCount = 40;
+  final int stripesCount = 20;
   String get description => "Diagonal Stripes Light";
 
-  /// Paints a [Pattern] made of 40 thin diagonal stripes across the largest
+  /// Paints a [Pattern] made of 20 thin diagonal stripes across the largest
   /// side with the foreground color as the stripe color.
   ///
   /// Example:
@@ -23,9 +23,13 @@ class DiagonalStripesLight extends Pattern {
   /// DiagonalStripesLight(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const DiagonalStripesLight({required this.bgColor, required this.fgColor})
-      : super(patternType: PatternType.diagonalLight, bgColor: bgColor, fgColor: fgColor);
+      : super(
+            patternType: PatternType.diagonalLight,
+            bgColor: bgColor,
+            fgColor: fgColor);
 
-  void paintWithPattern(Canvas canvas, double x, double y, double width, double height) {
+  void paintWithPattern(
+      Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
     final stripeW = maxDimension / stripesCount / 6;
     var step = stripeW * 9;
@@ -33,7 +37,8 @@ class DiagonalStripesLight extends Pattern {
       ..style = PaintingStyle.fill
       ..color = bgColor;
     canvas.drawRect(Rect.fromLTWH(x, y, width, height), paint);
-    final rectStripesCount = stripesCount * 2.5; // to make sure we cover the whole rectangle
+    final rectStripesCount =
+        stripesCount * 2.5; // to make sure we cover the whole rectangle
     final allStripesPath = Path();
     for (var i = 1; i < rectStripesCount; i += 2) {
       final stripePath = Path();

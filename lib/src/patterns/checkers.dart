@@ -11,10 +11,10 @@ class Checkers extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int squaresCount = 40;
+  final int squaresCount = 20;
   String get description => "Checkers";
 
-  /// Paints a [Pattern] made of 40 squares across the largest side
+  /// Paints a [Pattern] made of 20 squares across the largest side
   /// with alternating colors.
   ///
   /// Example:

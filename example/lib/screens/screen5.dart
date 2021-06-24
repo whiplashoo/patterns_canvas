@@ -37,13 +37,15 @@ class MyPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    TexturePattern(bgColor: Colors.white, fgColor: Colors.blueGrey).paintOnCanvas(canvas, size);
+    TexturePattern(bgColor: Colors.white, fgColor: Colors.blueGrey)
+        .paintOnCanvas(canvas, size);
 
     // Prepare a rectangle shape to draw the pattern on.
     final rect = Rect.fromLTWH(80, 50, 200, 100);
 
     // Create a Pattern object of diagonal stripes with the colors we want.
-    final Pattern pattern = DiagonalStripesLight(bgColor: Colors.lightGreenAccent, fgColor: Colors.black);
+    final Pattern pattern = DiagonalStripesLight(
+        bgColor: Colors.lightGreenAccent, fgColor: Colors.black);
 
     // Paint the pattern on the rectangle.
     pattern.paintOnRect(canvas, size, rect);
@@ -53,7 +55,8 @@ class MyPainter extends CustomPainter {
     path.lineTo(300, 280);
     path.quadraticBezierTo(20, 400, 40, 300);
     path.close();
-    Crosshatch(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+    Crosshatch(bgColor: Colors.yellow, fgColor: Colors.black)
+        .paintOnPath(canvas, size, path);
   }
 
   @override

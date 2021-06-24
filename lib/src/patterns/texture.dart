@@ -11,10 +11,10 @@ class TexturePattern extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int squaresCount = 40;
+  final int squaresCount = 20;
   String get description => "Texture";
 
-  /// Paints a [Pattern] made of 40 squares inside bigger squares across the object's
+  /// Paints a [Pattern] made of 20 squares inside bigger squares across the object's
   /// larger side with the foreground color as the inner square's color.
   ///
   /// The squares are drawn diagonally.

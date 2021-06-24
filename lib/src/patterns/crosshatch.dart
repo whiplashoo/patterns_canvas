@@ -5,23 +5,23 @@ import 'package:flutter/material.dart';
 
 import '../pattern.dart';
 
-/// Paints a [Pattern] made of 20 diamond shapes across the largest side
-/// with the foreground color as their border color.
-///
-/// Example:
-///
-/// ```dart
-/// Crosshatch(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
-/// ```
 class Crosshatch extends Pattern {
   /// The [Pattern]'s background color.
   final Color bgColor;
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int squaresCount = 20;
+  final int squaresCount = 10;
   String get description => "Crosshatch";
 
+  /// Paints a [Pattern] made of 10 diamond shapes across the largest side
+  /// with the foreground color as their border color.
+  ///
+  /// Example:
+  ///
+  /// ```dart
+  /// Crosshatch(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
+  /// ```
   const Crosshatch({required this.bgColor, required this.fgColor})
       : super(
             patternType: PatternType.crosshatch,

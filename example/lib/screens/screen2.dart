@@ -141,7 +141,9 @@ Widget _buildButtonColumn(Color color, IconData icon, String label) {
 class TopContainerPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    VerticalStripesThick(bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f)).paintOnWidget(canvas, size);
+    VerticalStripesThick(
+            bgColor: Color(0xff0509050), fgColor: Color(0xfffdbf6f))
+        .paintOnWidget(canvas, size);
   }
 
   @override
@@ -151,7 +153,8 @@ class TopContainerPatternPainter extends CustomPainter {
 class ButtonPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Raindrops(bgColor: Color(0xffffffb3), fgColor: Color(0xffa6cee3)).paintOnWidget(canvas, size);
+    Raindrops(bgColor: Color(0xffffffb3), fgColor: Color(0xffa6cee3))
+        .paintOnWidget(canvas, size);
   }
 
   @override
@@ -161,7 +164,8 @@ class ButtonPatternPainter extends CustomPainter {
 class TextContainerPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Dots(bgColor: Color(0xffffffff), fgColor: Color(0xffd1e5f0)).paintOnWidget(canvas, size);
+    Dots(bgColor: Color(0xffffffff), fgColor: Color(0xffd1e5f0))
+        .paintOnWidget(canvas, size);
   }
 
   @override
@@ -172,7 +176,8 @@ class BottomAppBarPatternPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     DiagonalStripesLight(bgColor: Color(0xffeeeeee), fgColor: Color(0xffd1dbdd))
-        .paintOnWidget(canvas, size, patternScaleBehavior: PatternScaleBehavior.canvas);
+        .paintOnWidget(canvas, size,
+            patternScaleBehavior: PatternScaleBehavior.canvas);
   }
 
   @override
