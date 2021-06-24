@@ -75,7 +75,11 @@ enum PatternScaleBehavior { container, customRect, canvas }
 ///final Pattern p3 = Pattern.fromString("diagonalLight_ffff00_000000");
 ///```
 abstract class Pattern {
-  /// The [Pattern]'s background color.
+  static const DEFAULT_STRIPES_COUNT = 10;
+  static const DEFAULT_SQUARES_COUNT = 10;
+  static const DEFAULT_DOTS_COUNT = 10;
+  static const DEFAULT_DIAGONAL_STRIPES_COUNT = 15;
+
   /// The [Pattern]'s background color.
   final Color bgColor;
 
@@ -105,31 +109,68 @@ abstract class Pattern {
   factory Pattern.fromValues(
       {required PatternType patternType,
       required Color bgColor,
-      required Color fgColor}) {
+      required Color fgColor,
+      int? featuresCount}) {
     if (patternType == PatternType.dots)
-      return Dots(bgColor: bgColor, fgColor: fgColor);
+      return Dots(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_SQUARES_COUNT);
     if (patternType == PatternType.verticalThick)
-      return VerticalStripesThick(bgColor: bgColor, fgColor: fgColor);
+      return VerticalStripesThick(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_STRIPES_COUNT);
     if (patternType == PatternType.verticalLight)
-      return VerticalStripesLight(bgColor: bgColor, fgColor: fgColor);
+      return VerticalStripesLight(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_STRIPES_COUNT);
     if (patternType == PatternType.diagonalThick)
-      return DiagonalStripesThick(bgColor: bgColor, fgColor: fgColor);
+      return DiagonalStripesThick(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_DIAGONAL_STRIPES_COUNT);
     if (patternType == PatternType.diagonalLight)
-      return DiagonalStripesLight(bgColor: bgColor, fgColor: fgColor);
+      return DiagonalStripesLight(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_DIAGONAL_STRIPES_COUNT);
     if (patternType == PatternType.horizontalLight)
-      return HorizontalStripesLight(bgColor: bgColor, fgColor: fgColor);
+      return HorizontalStripesLight(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_STRIPES_COUNT);
     if (patternType == PatternType.horizontalThick)
-      return HorizontalStripesThick(bgColor: bgColor, fgColor: fgColor);
+      return HorizontalStripesThick(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_STRIPES_COUNT);
     if (patternType == PatternType.subtlepatch)
-      return SubtlePatch(bgColor: bgColor, fgColor: fgColor);
+      return SubtlePatch(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_SQUARES_COUNT);
     if (patternType == PatternType.texture)
-      return TexturePattern(bgColor: bgColor, fgColor: fgColor);
+      return TexturePattern(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_SQUARES_COUNT);
     if (patternType == PatternType.raindrops)
-      return Raindrops(bgColor: bgColor, fgColor: fgColor);
+      return Raindrops(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_SQUARES_COUNT);
     if (patternType == PatternType.checkers)
-      return Checkers(bgColor: bgColor, fgColor: fgColor);
+      return Checkers(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_SQUARES_COUNT);
     if (patternType == PatternType.crosshatch)
-      return Crosshatch(bgColor: bgColor, fgColor: fgColor);
+      return Crosshatch(
+          bgColor: bgColor,
+          fgColor: fgColor,
+          featuresCount: featuresCount ?? DEFAULT_SQUARES_COUNT);
     throw "Can't create pattern";
   }
 

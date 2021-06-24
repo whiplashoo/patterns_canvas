@@ -1,6 +1,6 @@
 name: patterns_canvas
 description: Draw patterns like stripes or dots on canvas elements or widgets.
-version: 0.3.4
+version: 0.3.5
 homepage: https://github.com/whiplashoo/patterns_canvas
 
 environment:

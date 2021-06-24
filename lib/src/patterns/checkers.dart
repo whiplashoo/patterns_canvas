@@ -11,7 +11,7 @@ class Checkers extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int squaresCount = 20;
+  final int featuresCount;
   String get description => "Checkers";
 
   /// Paints a [Pattern] made of 20 squares across the largest side
@@ -22,7 +22,10 @@ class Checkers extends Pattern {
   /// ```dart
   /// Checkers(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const Checkers({required this.bgColor, required this.fgColor})
+  const Checkers(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_SQUARES_COUNT})
       : super(
             patternType: PatternType.checkers,
             bgColor: bgColor,
@@ -31,7 +34,7 @@ class Checkers extends Pattern {
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
-    var rectSide = maxDimension / squaresCount;
+    var rectSide = maxDimension / featuresCount / 2;
     var horizontalSquaresCount = width / rectSide;
     var verticalSquaresCount = height / rectSide;
 

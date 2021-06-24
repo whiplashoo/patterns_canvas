@@ -11,7 +11,7 @@ class VerticalStripesThick extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int stripesCount = 30;
+  final int featuresCount;
   String get description => "Vertical Stripes Thick";
 
   /// Paints a [Pattern] made of 30 thick vertical stripes across the object's width
@@ -22,7 +22,10 @@ class VerticalStripesThick extends Pattern {
   /// ```dart
   /// VerticalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const VerticalStripesThick({required this.bgColor, required this.fgColor})
+  const VerticalStripesThick(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_STRIPES_COUNT})
       : super(
             patternType: PatternType.verticalThick,
             bgColor: bgColor,
@@ -30,6 +33,7 @@ class VerticalStripesThick extends Pattern {
 
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
+    final stripesCount = featuresCount * 2;
     var stripeW = width / stripesCount / 1.5;
     final paint = Paint()
       ..style = PaintingStyle.fill

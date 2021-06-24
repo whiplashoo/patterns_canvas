@@ -44,7 +44,7 @@ class MyPainter extends CustomPainter {
     final rect = Rect.fromLTWH(80, 50, 200, 100);
 
     // Create a Pattern object of diagonal stripes with the colors we want.
-    final Pattern pattern = DiagonalStripesLight(
+    final Pattern pattern = DiagonalStripesThick(
         bgColor: Colors.lightGreenAccent, fgColor: Colors.black);
 
     // Paint the pattern on the rectangle.

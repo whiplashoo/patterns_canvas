@@ -10,10 +10,10 @@ class HorizontalStripesLight extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int stripesCount = 30;
+  final int featuresCount;
   String get description => "Horizontal Stripes Light";
 
-  /// Paints a [Pattern] made of 30 thin horizontal stripes across the object's height
+  /// Paints a [Pattern] made of 20 thin horizontal stripes across the object's height
   /// with the foreground color as the stripe color.
   ///
   /// Example:
@@ -21,7 +21,10 @@ class HorizontalStripesLight extends Pattern {
   /// ```dart
   /// HorizontalStripesLight(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const HorizontalStripesLight({required this.bgColor, required this.fgColor})
+  const HorizontalStripesLight(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_STRIPES_COUNT})
       : super(
             patternType: PatternType.horizontalLight,
             bgColor: bgColor,
@@ -29,6 +32,7 @@ class HorizontalStripesLight extends Pattern {
 
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
+    final stripesCount = featuresCount * 2;
     final stripeH = height / stripesCount / 6;
     final paint = Paint()
       ..style = PaintingStyle.fill

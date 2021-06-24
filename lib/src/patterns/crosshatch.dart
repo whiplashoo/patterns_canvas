@@ -11,7 +11,7 @@ class Crosshatch extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int squaresCount = 10;
+  final int featuresCount;
   String get description => "Crosshatch";
 
   /// Paints a [Pattern] made of 10 diamond shapes across the largest side
@@ -22,7 +22,10 @@ class Crosshatch extends Pattern {
   /// ```dart
   /// Crosshatch(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const Crosshatch({required this.bgColor, required this.fgColor})
+  const Crosshatch(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_SQUARES_COUNT})
       : super(
             patternType: PatternType.crosshatch,
             bgColor: bgColor,
@@ -31,7 +34,7 @@ class Crosshatch extends Pattern {
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
-    var rectSide = maxDimension / squaresCount;
+    var rectSide = maxDimension / featuresCount;
     var horizontalSquaresCount = width / rectSide;
     var verticalSquaresCount = height / rectSide;
 

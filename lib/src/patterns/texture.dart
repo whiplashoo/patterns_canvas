@@ -11,7 +11,7 @@ class TexturePattern extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int squaresCount = 20;
+  final int featuresCount;
   String get description => "Texture";
 
   /// Paints a [Pattern] made of 20 squares inside bigger squares across the object's
@@ -24,7 +24,10 @@ class TexturePattern extends Pattern {
   /// ```dart
   /// TexturePattern(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const TexturePattern({required this.bgColor, required this.fgColor})
+  const TexturePattern(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_SQUARES_COUNT})
       : super(
             patternType: PatternType.texture,
             bgColor: bgColor,
@@ -33,7 +36,7 @@ class TexturePattern extends Pattern {
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
-    var rectSide = maxDimension / squaresCount;
+    var rectSide = maxDimension / featuresCount / 2;
     var horizontalSquaresCount = width / rectSide;
     var verticalSquaresCount = height / rectSide;
 

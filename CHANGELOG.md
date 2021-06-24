@@ -1,5 +1,8 @@
-* TODO: Add option to control how many stripes are drawn
-* TODO: Consider adding a serialization function for objects
+## 0.3.5
+
+* Add ability to control how many pattern features are drawn for each pattern (e.g. 20 stripes or 40 dots).
+* Update examples.
+* Fix Dart formatting.
 
 ## 0.3.4
 

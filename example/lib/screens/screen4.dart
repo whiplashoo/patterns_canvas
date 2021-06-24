@@ -38,7 +38,7 @@ class MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     const horizontalPadding = 20.0;
-    const verticalPadding = 30.0;
+    const verticalPadding = 22.0;
     const rectW = 150.0;
     const rectH = 75.0;
     var dx = horizontalPadding;
@@ -128,6 +128,24 @@ class MyPainter extends CustomPainter {
         patternScaleBehavior: PatternScaleBehavior.customRect,
         customRect:
             Rect.fromLTWH(0, size.height / 2, size.width, size.height / 2));
+    dx = horizontalPadding;
+    dy += rectH + verticalPadding;
+    span = TextSpan(
+        style: TextStyle(color: fontColor),
+        text:
+            "• Or use the featuresCount property to explicitly set how many features are drawn for a pattern:");
+    tp.text = span;
+    tp.layout(maxWidth: size.width - 20);
+    tp.paint(canvas, Offset(dx, dy));
+    dy += verticalPadding * 2;
+    span = TextSpan(
+        style: TextStyle(
+            fontSize: 12, fontWeight: FontWeight.w700, color: fontColor),
+        text:
+            "Pattern p = Dots(bgColor: Colors.green, fgColor: Colors.black, featuresCount: 5).paintOnPath(canvas, size, path);");
+    tp.text = span;
+    tp.layout(maxWidth: size.width - 20);
+    tp.paint(canvas, Offset(dx, dy));
   }
 
   @override

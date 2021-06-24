@@ -11,7 +11,7 @@ class DiagonalStripesLight extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int stripesCount = 20;
+  final int featuresCount;
   String get description => "Diagonal Stripes Light";
 
   /// Paints a [Pattern] made of 20 thin diagonal stripes across the largest
@@ -22,7 +22,10 @@ class DiagonalStripesLight extends Pattern {
   /// ```dart
   /// DiagonalStripesLight(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const DiagonalStripesLight({required this.bgColor, required this.fgColor})
+  const DiagonalStripesLight(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_DIAGONAL_STRIPES_COUNT})
       : super(
             patternType: PatternType.diagonalLight,
             bgColor: bgColor,
@@ -31,14 +34,14 @@ class DiagonalStripesLight extends Pattern {
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
-    final stripeW = maxDimension / stripesCount / 6;
+    final stripeW = maxDimension / featuresCount / 6;
     var step = stripeW * 9;
     final paint = Paint()
       ..style = PaintingStyle.fill
       ..color = bgColor;
     canvas.drawRect(Rect.fromLTWH(x, y, width, height), paint);
     final rectStripesCount =
-        stripesCount * 2.5; // to make sure we cover the whole rectangle
+        featuresCount * 2.5; // to make sure we cover the whole rectangle
     final allStripesPath = Path();
     for (var i = 1; i < rectStripesCount; i += 2) {
       final stripePath = Path();

@@ -40,8 +40,7 @@ class MyPainter extends CustomPainter {
     // Prepare the canvas elements to draw on.
     final rect1 = Rect.fromLTWH(30, 50, 125, 75);
     final rect2 = Rect.fromLTWH(30, 150, 125, 75);
-    final rect3 = Rect.fromLTWH(30, 250, 125, 75);
-    final rRect = RRect.fromLTRBR(190, 50, 325, 125, Radius.circular(45));
+    final rRect = RRect.fromLTRBR(30, 250, 155, 325, Radius.circular(45));
 
     final rightPath = Path();
     rightPath.lineTo(size.width, size.height / 5);
@@ -75,20 +74,22 @@ class MyPainter extends CustomPainter {
 
     // 3. From a String representation in the form of `pattern_backgroundHex_foregroundHex`:
     final Pattern p3 = Pattern.fromString("verticalThick_e17c05_525252");
-    p3.paintOnRect(canvas, size, rect3);
-
-    // You can also draw Patterns on a RRect:
-    DiagonalStripesThick(bgColor: Colors.greenAccent, fgColor: Colors.black)
-        .paintOnRRect(canvas, size, rRect);
+    // which can also be drawn on a RRect:
+    p3.paintOnRRect(canvas, size, rRect);
 
     // Or on a Circle:
+    HorizontalStripesThick(bgColor: Colors.greenAccent, fgColor: Colors.black)
+        .paintOnCircle(canvas, size, Offset(250, 85), 40.0);
+
+    // You can also set the total number of pattern features to draw, like the number of stripes:
     HorizontalStripesThick(
-            bgColor: Colors.blueGrey, fgColor: Colors.yellowAccent)
+            bgColor: Colors.greenAccent,
+            fgColor: Colors.black,
+            featuresCount: 5)
         .paintOnCircle(canvas, size, Offset(250, 185), 40.0);
 
     // You can also control how the pattern scales to its containing element (more on this in the second example):
-    HorizontalStripesThick(
-            bgColor: Colors.blueGrey, fgColor: Colors.yellowAccent)
+    HorizontalStripesThick(bgColor: Colors.greenAccent, fgColor: Colors.black)
         .paintOnCircle(canvas, size, Offset(250, 285), 40.0,
             patternScaleBehavior: PatternScaleBehavior.canvas);
 

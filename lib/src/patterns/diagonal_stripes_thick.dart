@@ -11,7 +11,7 @@ class DiagonalStripesThick extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int stripesCount = 20;
+  final int featuresCount;
   String get description => "Diagonal Stripes Thick";
 
   /// Paints a [Pattern] made of 20 thick diagonal stripes across the largest
@@ -22,7 +22,10 @@ class DiagonalStripesThick extends Pattern {
   /// ```dart
   /// DiagonalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const DiagonalStripesThick({required this.bgColor, required this.fgColor})
+  const DiagonalStripesThick(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_DIAGONAL_STRIPES_COUNT})
       : super(
             patternType: PatternType.diagonalThick,
             bgColor: bgColor,
@@ -30,6 +33,7 @@ class DiagonalStripesThick extends Pattern {
 
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
+    final stripesCount = featuresCount;
     final maxDimension = max(width, height);
     final stripeW = maxDimension / stripesCount / 2;
     final paint = Paint()

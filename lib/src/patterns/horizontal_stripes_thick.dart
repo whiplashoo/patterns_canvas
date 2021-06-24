@@ -10,10 +10,10 @@ class HorizontalStripesThick extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int stripesCount = 30;
+  final int featuresCount;
   String get description => "Horizontal Stripes Thick";
 
-  /// Paints a [Pattern] made of 30 thick horizontal stripes across the object's height
+  /// Paints a [Pattern] made of 20 thick horizontal stripes across the object's height
   /// with the foreground color as the stripe color.
   ///
   /// Example:
@@ -21,7 +21,10 @@ class HorizontalStripesThick extends Pattern {
   /// ```dart
   /// HorizontalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const HorizontalStripesThick({required this.bgColor, required this.fgColor})
+  const HorizontalStripesThick(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_STRIPES_COUNT})
       : super(
             patternType: PatternType.horizontalThick,
             bgColor: bgColor,
@@ -29,6 +32,7 @@ class HorizontalStripesThick extends Pattern {
 
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
+    final stripesCount = featuresCount * 2;
     var stripeH = height / stripesCount / 1.5;
     final paint = Paint()
       ..style = PaintingStyle.fill

@@ -11,7 +11,7 @@ class Dots extends Pattern {
 
   /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
   final Color fgColor;
-  final int circlesCount = 10;
+  final int featuresCount;
   String get description => "Dots";
 
   /// Paints a [Pattern] made of 10 circles (dots) inside bigger squares across the object's
@@ -22,14 +22,17 @@ class Dots extends Pattern {
   /// ```dart
   /// Dots(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
-  const Dots({required this.bgColor, required this.fgColor})
+  const Dots(
+      {required this.bgColor,
+      required this.fgColor,
+      this.featuresCount = Pattern.DEFAULT_DOTS_COUNT})
       : super(
             patternType: PatternType.dots, bgColor: bgColor, fgColor: fgColor);
 
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);
-    var rectSide = maxDimension / circlesCount;
+    var rectSide = maxDimension / featuresCount;
     var horizontalSquaresCount = width / rectSide;
     var verticalSquaresCount = height / rectSide;
     final paint = Paint()
