@@ -14,7 +14,7 @@ class DiagonalStripesLight extends Pattern {
   final int featuresCount;
   String get description => "Diagonal Stripes Light";
 
-  /// Paints a [Pattern] made of 20 thin diagonal stripes across the largest
+  /// Paints a [Pattern] made of 15 thin diagonal stripes across the largest
   /// side with the foreground color as the stripe color.
   ///
   /// Example:

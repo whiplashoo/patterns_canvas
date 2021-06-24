@@ -14,7 +14,7 @@ class Checkers extends Pattern {
   final int featuresCount;
   String get description => "Checkers";
 
-  /// Paints a [Pattern] made of 20 squares across the largest side
+  /// Paints a [Pattern] made of 10 squares across the largest side
   /// with alternating colors.
   ///
   /// Example:

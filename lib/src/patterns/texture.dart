@@ -14,7 +14,7 @@ class TexturePattern extends Pattern {
   final int featuresCount;
   String get description => "Texture";
 
-  /// Paints a [Pattern] made of 20 squares inside bigger squares across the object's
+  /// Paints a [Pattern] made of 10 squares inside bigger squares across the object's
   /// larger side with the foreground color as the inner square's color.
   ///
   /// The squares are drawn diagonally.

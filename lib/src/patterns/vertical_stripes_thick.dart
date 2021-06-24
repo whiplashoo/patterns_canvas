@@ -14,7 +14,7 @@ class VerticalStripesThick extends Pattern {
   final int featuresCount;
   String get description => "Vertical Stripes Thick";
 
-  /// Paints a [Pattern] made of 30 thick vertical stripes across the object's width
+  /// Paints a [Pattern] made of 10 thick vertical stripes across the object's width
   /// with the foreground color as the stripe color.
   ///
   /// Example:
