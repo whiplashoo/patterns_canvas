@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Fix: update to be compatible with Flutter 3.
+
 ## 0.3.5
 
 * Add ability to control how many pattern features are drawn for each pattern (e.g. 20 stripes or 40 dots).
