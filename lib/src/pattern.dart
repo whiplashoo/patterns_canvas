@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import 'patterns/checkers.dart';
@@ -208,8 +206,8 @@ abstract class Pattern {
         paintWithPattern(canvas, 0.0, 0.0, size.width, size.height);
         break;
       case PatternScaleBehavior.canvas:
-        Size screenSize = WidgetsBinding.instance!.window.physicalSize /
-            WidgetsBinding.instance!.window.devicePixelRatio;
+        Size screenSize = WidgetsBinding.instance.window.physicalSize /
+            WidgetsBinding.instance.window.devicePixelRatio;
         paintOnCanvas(canvas, screenSize);
         break;
       case PatternScaleBehavior.customRect:
