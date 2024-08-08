@@ -1,5 +1,9 @@
 ## 0.4.0
 
+* Fix: update Dart SDK constraints.
+
+## 0.4.0
+
 * Fix: update to be compatible with Flutter 3.
 
 ## 0.3.5
