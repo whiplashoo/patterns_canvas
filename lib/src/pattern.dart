@@ -11,6 +11,7 @@ import 'patterns/raindrops.dart';
 import 'patterns/subtle_patch.dart';
 import 'patterns/texture.dart';
 import 'patterns/vertical_stripes_light.dart';
+import 'patterns/vertical_stripes_thick.dart';
 import 'utils/utils.dart';
 
 /// The available [Pattern] types. Use in the [Pattern.fromValues] constructor.
@@ -116,6 +117,11 @@ abstract class Pattern {
             featuresCount: featuresCount ?? defaultDotsCount);
       case PatternType.verticalLight:
         return VerticalStripesLight(
+            bgColor: bgColor,
+            fgColor: fgColor,
+            featuresCount: featuresCount ?? defaultStripesCount);
+      case PatternType.verticalThick:
+        return VerticalStripesThick(
             bgColor: bgColor,
             fgColor: fgColor,
             featuresCount: featuresCount ?? defaultStripesCount);
