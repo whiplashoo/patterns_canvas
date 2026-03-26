@@ -20,12 +20,12 @@ Color hexOrRGBToColor(String colorStr) {
     }
     if (colorStr.length == 7) {
       int colorValue = int.parse(colorStr.substring(1), radix: 16);
-      return Color(colorValue).withOpacity(1.0);
+      return Color(colorValue).withValues(alpha: 1.0);
     } else {
       int colorValue = int.parse(colorStr.substring(1, 7), radix: 16);
       double opacityValue =
           int.parse(colorStr.substring(7), radix: 16).toDouble() / 255;
-      return Color(colorValue).withOpacity(opacityValue);
+      return Color(colorValue).withValues(alpha: opacityValue);
     }
   } else if (colorStr.isEmpty) {
     throw UnsupportedError("Empty color field found.");

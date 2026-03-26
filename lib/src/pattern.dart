@@ -206,8 +206,9 @@ abstract class Pattern {
         paintWithPattern(canvas, 0.0, 0.0, size.width, size.height);
         break;
       case PatternScaleBehavior.canvas:
-        Size screenSize = WidgetsBinding.instance.window.physicalSize /
-            WidgetsBinding.instance.window.devicePixelRatio;
+        final view = WidgetsBinding.instance.platformDispatcher.implicitView;
+        final Size screenSize =
+            view != null ? view.physicalSize / view.devicePixelRatio : size;
         paintOnCanvas(canvas, screenSize);
         break;
       case PatternScaleBehavior.customRect:
