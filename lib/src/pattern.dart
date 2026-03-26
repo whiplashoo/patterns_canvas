@@ -170,8 +170,6 @@ abstract class Pattern {
             bgColor: bgColor,
             fgColor: fgColor,
             featuresCount: featuresCount ?? defaultSquaresCount);
-      default:
-        throw "Can't create pattern";
     }
   }
 
