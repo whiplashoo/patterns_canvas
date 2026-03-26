@@ -6,12 +6,9 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class DiagonalStripesThick extends Pattern {
-  /// The [Pattern]'s background color.
-  final Color bgColor;
-
-  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
-  final Color fgColor;
   final int featuresCount;
+
+  @override
   String get description => "Diagonal Stripes Thick";
 
   /// Paints a [Pattern] made of 15 thick diagonal stripes across the largest
@@ -23,14 +20,12 @@ class DiagonalStripesThick extends Pattern {
   /// DiagonalStripesThick(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const DiagonalStripesThick(
-      {required this.bgColor,
-      required this.fgColor,
-      this.featuresCount = Pattern.DEFAULT_DIAGONAL_STRIPES_COUNT})
-      : super(
-            patternType: PatternType.diagonalThick,
-            bgColor: bgColor,
-            fgColor: fgColor);
+      {required super.bgColor,
+      required super.fgColor,
+      this.featuresCount = Pattern.defaultDiagonalStripesCount})
+      : super(patternType: PatternType.diagonalThick);
 
+  @override
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final stripesCount = featuresCount;

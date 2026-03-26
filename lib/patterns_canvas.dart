@@ -2,6 +2,7 @@
 /// ## Simple Example
 /// Inside your `CustomPainter` class's `paint` method, create a `Pattern` class with background (`bgColor`) and
 /// foreground (`fgColor`) colors and use one of its `paintOn` methods:
+library;
 
 ///```dart
 /// class MyPainter extends CustomPainter {
@@ -20,8 +21,6 @@
 ///   }
 /// }
 ///```
-library patterns_canvas;
-
 export 'src/pattern.dart';
 export 'src/patterns/checkers.dart';
 export 'src/patterns/crosshatch.dart';

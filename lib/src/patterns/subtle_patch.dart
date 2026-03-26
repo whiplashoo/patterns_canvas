@@ -6,12 +6,9 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class SubtlePatch extends Pattern {
-  /// The [Pattern]'s background color.
-  final Color bgColor;
-
-  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
-  final Color fgColor;
   final int featuresCount;
+
+  @override
   String get description => "Subtle Patch";
 
   /// Paints a [Pattern] made of 10 squares inside bigger squares across the object's
@@ -23,14 +20,12 @@ class SubtlePatch extends Pattern {
   /// SubtlePatch(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const SubtlePatch(
-      {required this.bgColor,
-      required this.fgColor,
-      this.featuresCount = Pattern.DEFAULT_SQUARES_COUNT})
-      : super(
-            patternType: PatternType.subtlepatch,
-            bgColor: bgColor,
-            fgColor: fgColor);
+      {required super.bgColor,
+      required super.fgColor,
+      this.featuresCount = Pattern.defaultSquaresCount})
+      : super(patternType: PatternType.subtlepatch);
 
+  @override
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);

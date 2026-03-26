@@ -6,12 +6,8 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class Dots extends Pattern {
-  /// The [Pattern]'s background color.
-  final Color bgColor;
-
-  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
-  final Color fgColor;
   final int featuresCount;
+  @override
   String get description => "Dots";
 
   /// Paints a [Pattern] made of 10 circles (dots) inside bigger squares across the object's
@@ -23,12 +19,12 @@ class Dots extends Pattern {
   /// Dots(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const Dots(
-      {required this.bgColor,
-      required this.fgColor,
-      this.featuresCount = Pattern.DEFAULT_DOTS_COUNT})
-      : super(
-            patternType: PatternType.dots, bgColor: bgColor, fgColor: fgColor);
+      {required super.bgColor,
+      required super.fgColor,
+      this.featuresCount = Pattern.defaultDotsCount})
+      : super(patternType: PatternType.dots);
 
+  @override
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final maxDimension = max(width, height);

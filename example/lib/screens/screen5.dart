@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:patterns_canvas/patterns_canvas.dart';
 
 class Screen5 extends StatefulWidget {
+  const Screen5({super.key});
+
   @override
-  _Screen5State createState() => _Screen5State();
+  State<Screen5> createState() => _Screen5State();
 }
 
 class _Screen5State extends State<Screen5> {

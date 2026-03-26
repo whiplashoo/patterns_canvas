@@ -5,12 +5,9 @@ import 'package:flutter/material.dart';
 import '../pattern.dart';
 
 class HorizontalStripesLight extends Pattern {
-  /// The [Pattern]'s background color.
-  final Color bgColor;
-
-  /// The [Pattern]'s foreground color (for the stripes, dots, squares, etc.).
-  final Color fgColor;
   final int featuresCount;
+
+  @override
   String get description => "Horizontal Stripes Light";
 
   /// Paints a [Pattern] made of 10 thin horizontal stripes across the object's height
@@ -22,14 +19,12 @@ class HorizontalStripesLight extends Pattern {
   /// HorizontalStripesLight(bgColor: Colors.yellow, fgColor: Colors.black).paintOnPath(canvas, size, path);
   /// ```
   const HorizontalStripesLight(
-      {required this.bgColor,
-      required this.fgColor,
-      this.featuresCount = Pattern.DEFAULT_STRIPES_COUNT})
-      : super(
-            patternType: PatternType.horizontalLight,
-            bgColor: bgColor,
-            fgColor: fgColor);
+      {required super.bgColor,
+      required super.fgColor,
+      this.featuresCount = Pattern.defaultStripesCount})
+      : super(patternType: PatternType.horizontalLight);
 
+  @override
   void paintWithPattern(
       Canvas canvas, double x, double y, double width, double height) {
     final stripesCount = featuresCount * 2;
