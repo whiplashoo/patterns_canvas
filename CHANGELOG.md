@@ -1,3 +1,8 @@
+## 0.6.0
+
+* Fix: Analyzer warnings.
+* Fix: Update Android and iOS example projects to new setups.
+
 ## 0.5.0
 
 * Fix: update Dart SDK constraints.
